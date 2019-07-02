@@ -37,20 +37,20 @@ res.send(swaggerSpec);
 /**
     * @swagger
     * /api/v1/test:
-    *   get:
+    *   post:
     *     tags:
     *       - ""
-    *     summary: "Тест API"
+    *     summary: "Example API"
     *     description: ""
     *     produces:
     *       - application/json
     *     responses:
     *       200:  
-    *        description: Test data
+    *        description: Example data
     *        examples:
-    *           application/json: { "data": "Some data" }
+    *           application/json: { "_id": "5d1bab42042e52e0444e81af", "name": "some" }
     */
-   router.get('/api/v1/test', require('./api/v1/test').get);
+   router.post('/api/v1/example', require('./api/v1/example').post);
  
 
 module.exports = router;

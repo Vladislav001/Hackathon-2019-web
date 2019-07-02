@@ -7,10 +7,4 @@ const exampleSchema = mongoose.Schema({
     }
 });
 
-exampleSchema.virtual('exampleId').get(function () {
-    return this._id;
-});
-
-let Example = mongoose.model('Example', exampleSchema);
-
-module.exports = Example;
+module.exports = mongoose.model('Example', exampleSchema);
