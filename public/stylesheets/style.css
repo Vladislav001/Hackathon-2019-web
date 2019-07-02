@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.swagger-logo {
+  width: 100%;
+  max-width: 60px;
+  height: auto;
+}
+
+.api-name {
+  font-size: 18pt;
+}

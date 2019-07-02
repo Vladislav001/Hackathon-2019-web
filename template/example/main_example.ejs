@@ -1,0 +1,66 @@
+<% layout ('../layout/pattern') -%>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Названия</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+
+                <% for (var i=0; i< examples.length; i++) { %>
+                <tbody>
+                <th scope="row"><%=i+1%></th>
+                <td><a href="/example/id<%=examples[i].id%>"><%=examples[i].name%></a></td>
+                <td><button class="btn btn-danger" value="/delete-example/id<%=examples[i].id%>"
+                            onclick="return confirmDelete()">Удалить</button></td>
+                </tbody>
+                <% } %>
+            </table>
+        </div>
+
+
+        <div class="col">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="name">Название</label>
+                        <input type="text" id="name" class="form-control" placeholder="Название" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var form = document.querySelector("form");
+    form.addEventListener("submit", addData);
+
+    function addData(event) {
+        event.preventDefault();
+
+        var newData = {};
+        newData.name = document.querySelector("#name").value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/add-example',
+            dataType: 'json',
+            data: newData,
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                location.reload();
+            }
+        });
+    }
+</script>

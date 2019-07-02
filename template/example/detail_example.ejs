@@ -1,0 +1,44 @@
+<% layout ('../layout/pattern') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form id="form_example">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="name">Название</label>
+                        <input type="text" id="name" class="form-control" value="<%= example.name %>"
+                               placeholder="Название" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Обновить</button>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    var formExample = document.getElementById("form_example");
+    formExample.addEventListener("submit", updateExample);
+
+    function updateExample(event) {
+        event.preventDefault();
+        var updateExample = {};
+        updateExample.name = document.querySelector("#name").value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/update-example/id<%= example.id %>',
+            dataType: 'json',
+            data: updateExample,
+            success: function () {
+                location.reload();
+            },
+            error: function () {
+                location.reload();
+            }
+        });
+    }
+</script>
