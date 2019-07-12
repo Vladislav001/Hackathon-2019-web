@@ -10,7 +10,8 @@ const app = express();
 
 // connect to DB
 mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
- 
+mongoose.set('useFindAndModify', false);
+
 
 // view engine setup
 app.engine('ejs', require('ejs-locals'));
