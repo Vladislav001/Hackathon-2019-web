@@ -106,5 +106,7 @@ router.post('/api/v1/example', require('./api/v1/example').post);
  */
 router.post('/api/v1/example-upload-file', upload.single('file'), require('./api/v1/example_upload_file').post);
 
+// websockets
+require('./api/v1/example_websocket');
 
 module.exports = router;
