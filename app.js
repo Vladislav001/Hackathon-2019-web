@@ -9,7 +9,8 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connect to DB
-mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
+//mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/hakatonSoloDb", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 
 
