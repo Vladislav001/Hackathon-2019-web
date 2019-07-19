@@ -61,7 +61,7 @@ router.get('/swagger.json', function (req, res) {
 
 /**
  * @swagger
- * /api/v1/test:
+ * /api/v1/example:
  *   post:
  *     tags:
  *       - ""
