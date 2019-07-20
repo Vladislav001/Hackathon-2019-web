@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
         <% if(Model.user.image_avatar){%>
-        <img src="<% Model.user.image_avatar%>" alt="Image">
+        <img src="<%= Model.user.image_avatar%>" alt="Image">
         <% }else{%>
 
         <img src="/uploads/test_file.jpg" alt="Image">
@@ -13,13 +13,13 @@
 
 
                 <label for="nameOrganizzation">Название организации</label>
-                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации" value="<% Model.user.company%>">
+                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации" value="<%= Model.user.company%>">
 
                 <label for="phoneNumberOrganizzation">Телефон организации</label>
-                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<% Model.user.phone_number%>">
+                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<%= Model.user.phone_number%>">
 
                 <label for="phoneNumberOrganizzation">Почта организации</label>
-                <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<% Model.user.email%>">
+                <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<%= Model.user.email%>">
 
                 <label for="oldPassorwCompany">Старый пароль</label>
                 <input type="password" class="form-control" id="oldPassorwCompany" placeholder="Старый пароль">
@@ -28,7 +28,7 @@
                 <input type="password" class="form-control" id="newPassorwCompany" placeholder="Новый пароль">
 
                 <label for="linkCompany">Ссылка на сайт организации</label>
-                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<% Model.user.site%>">
+                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<%= Model.user.site%>">
 
                 <div>
                     <label for="upLoadImageCompany">Изменить Изображение организации</label>
@@ -67,13 +67,13 @@
             <% for(var i=0;i<Model.projects.length;++i){ %>
             <div class="card" style="width: 18rem;">
                 <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
-                <img class="card-img-top" src="<%Model.projects[i].images[0]%>" alt="image">
+                <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
                 <% } %>
 
                 <div class="card-body">
-                    <h5 class="card-title"><%Model.projects[i].name%></h5>
-                    <p class="card-text"><%Model.projects[i].description%></p>
-                    <a href="<%Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
+                    <h5 class="card-title"><%=Model.projects[i].name%></h5>
+                    <p class="card-text"><%=Model.projects[i].description%></p>
+                    <a href="<%=Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
                 </div>
             </div>
 
