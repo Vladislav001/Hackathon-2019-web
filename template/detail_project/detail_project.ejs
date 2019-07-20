@@ -111,8 +111,6 @@
     }
 </style>
 
-
-
 <!--<div class="fixed-top" style="background-color: black">-->
 <div class="container">
     <div class="row">
@@ -184,15 +182,15 @@
                                     <div>
                                         <table class="table">
                                             <tr><th>Ф.И.О.</th><th></th><th></th></tr>
-                                            <% for (i=0; i< 10; i++) { %>
+                                            <% for (i=0; i< students.length; i++) { %>
                                             <tr>
-                                                <td>Студент № <%=i+1%></td>
-                                                <td><a href="/example/id">Ссылка</a></td>
+                                                <td><%=students[i].last_name%> <%=students[i].first_name%> <%=students[i].second_name%></td>
+                                                <td><a href="" id=<%=students[i]._id%>>Ссылка</a></td>
                                                 <td>
                                                     <form id="edit_<%=i+1%>">
-                                                        <button class="btn btn-success" value="/delete-example/id"
+                                                        <button class="btn btn-success" value="/delete-example/id" id="accept_<%=students[i]._id%>"
                                                                 onclick="return successDelete ()">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
-                                                        <button class="btn btn-danger" value="/delete-example/id"
+                                                        <button class="btn btn-danger" value="/delete-example/id" id="delete_<%=students[i]._id%>"
                                                                 onclick="return confirmDelete()">Отклонить <i class="fa fa-times"></i></button>
                                                     </form>
                                                 </td>
