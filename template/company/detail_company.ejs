@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
         <% if(Model.user.image_avatar){%>
-        <img src="<%= Model.user.image_avatar%>" alt="Image">
+        <img style="height:200px;" class="img-fluid w-100" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
         <% }else{%>
 
         <img src="/uploads/test_file.jpg" alt="Image">
@@ -42,9 +42,15 @@
 
                     <small class="form-text text-muted">Создание проекта</small>
         <form>
+            <label for="newProjName">Название нового проекта</label>
             <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
-            <input type="checkbox" class="form-control" id="newProjPayment" >
+
+            <label for="newProjPayment">Оплачивается</label>
+            <input type="checkbox" class="form-check-input" id="newProjPayment" >
+
+            <label for="newProjDescription">Описание нового проекта</label>
             <input type="text" class="form-control" id="newProjDescription" placeholder="Описание нового проекта">
+
             <div>
                 <small class="form-text text-muted">Изображения проекта</small>
                 <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
@@ -63,22 +69,28 @@
 
 
                     <small class="form-text text-muted">Существующие проекты</small>
-        <small class="form-text text-muted">Существующие проекты</small>
+
         <div>
-            <% for(var i=0;i<Model.projects.length;++i){ %>
-            <div class="card" style="width: 18rem;">
-                <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
-                <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
-                <% } %>
+<!--            <div class="card-columns">-->
+<div class="row">
+                <% for(var i=0;i<Model.projects.length;++i){ %>
+                    <div class="col-md-5 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
+                        <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
+                        <% } %>
 
-                <div class="card-body">
-                    <h5 class="card-title"><%=Model.projects[i].name%></h5>
-                    <p class="card-text"><%=Model.projects[i].description%></p>
-                    <a href="/detail-project/<%=Model.projects[i]._id.toString()%>" class="btn btn-primary">Страница проекта</a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=Model.projects[i].name%></h5>
+                            <p class="card-text"><%=Model.projects[i].description%></p>
+                            <a href="/detail-project/id<%=Model.projects[i]._id.toString()%>" class="btn btn-primary">Страница проекта</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <% } %>
+                <% } %>
+            </div>
+<!--            </div>-->
 
         </div>
                 </div>
