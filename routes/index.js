@@ -44,12 +44,12 @@ module.exports = function (passport) {
 
 
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/company-detail',
+        successRedirect: '/detail-company',
         failureRedirect: '/',
         failureFlash: true
     }));
     router.post('/login', passport.authenticate('login', {
-        successRedirect: '/company-detail',
+        successRedirect: '/detail-company',
         failureRedirect: '/',
         failureFlash: true
     }));
@@ -60,7 +60,7 @@ module.exports = function (passport) {
 
 
     router.get('/detail-project', require('./detail_project/card').get);
-  //  router.get('/detail_company', require('./company/detail_company').get);
+    router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
   //  router.get('/detail_project', require('./detail_project/detail_project_').get);
 
 
