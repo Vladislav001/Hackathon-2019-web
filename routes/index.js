@@ -52,7 +52,7 @@ module.exports = function (passport) {
     });
 
 
-    router.get('/detail-project', require('./detail_project/card').get);
+    router.get('/detail-project', require('./detail_project/detail_project_').get);
 
 // Тестовые запросы
 // router.get('/', require('./example/main_example').get);

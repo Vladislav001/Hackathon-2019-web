@@ -1,0 +1,254 @@
+<% layout ('../layout/pattern') -%>
+
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button4 {
+        background-color: white;
+        color: black;
+        border: 2px solid #e7e7e7;
+    }
+
+
+    .tabs {
+        width: 100%;
+        height: 920px;
+    }
+    .tabs ul,
+    .tabs li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .tabs,
+    .tabs input[type="radio"]:checked + label {
+        position: relative;
+    }
+    .tabs li,
+    .tabs input[type="radio"] + label {
+        display: inline-block;
+    }
+    .tabs li > div,
+    .tabs input[type="radio"] {
+        position: absolute;
+    }
+    .tabs li > div,
+    .tabs input[type="radio"] + label {
+        border: solid 1px #ccc;
+    }
+    .tabs {
+        /*font: normal 11px Arial, Sans-serif;*/
+        color: #404040;
+    }
+    .tabs li {
+        vertical-align: top;
+    }
+    .tabs li:first-child {
+        margin-left: 8px;
+    }
+    .tabs li > div {
+        top: 33px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 8px;
+        overflow: auto;
+        background: #fff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .tabs input[type="radio"] + label {
+        margin: 0 2px 0 0;
+        padding: 0 18px;
+        line-height: 32px;
+        background: #f1f1f1;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+        cursor: pointer;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .tabs input[type="radio"]:checked + label {
+        z-index: 1;
+        background: #fff;
+        border-bottom-color: #fff;
+        cursor: default;
+    }
+    .tabs input[type="radio"] {
+        opacity: 0;
+    }
+    .tabs input[type="radio"] ~ div {
+        display: none;
+    }
+    .tabs input[type="radio"]:checked:not(:disabled) ~ div {
+        display: block;
+    }
+    .tabs input[type="radio"]:disabled + label {
+        opacity: .5;
+        cursor: no-drop;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>Карточка проекта № 1</h1>
+        </div>
+        <div class="col text-center">
+            <a class="nav-link active" href="#">
+                <h1>ItRocket</h1></a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="card text-center">
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Описание проекта</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="card-img-top" src="https://million-wallpapers.ru/wallpapers/6/8/437821415960923.jpg" alt="Card image cap">
+                        </div>
+                        <div class="col text-center">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Требуемые навыки</h5>
+                    </div>
+                    <div class="col text-center">
+                        <% for (var i=0; i< 15; i++) { %>
+                        <button class="button button4">Навык № <%=i+1%></button>
+                        <% } %>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Введите навык" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Добавить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Заявки</h5>
+                    </div>
+                    <div class="col text-center">
+                        <div class="tabs">
+                            <ul>
+                                <li>
+                                    <input type="radio" name="tabs-0" checked="checked" id="tabs-0-0" />
+                                    <label for="tabs-0-0">Поданные заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="#">Ссылка</a></td>
+                                                <td>
+                                                    <form id="delete_<%=i+1%>">
+                                                        <button type="button" class="btn btn-success">Принять</button>
+                                                        <button type="button" class="btn btn-danger">Отклонить</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-1" />
+                                    <label for="tabs-0-1">Принятые заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="#">Ссылка</a></td>
+                                                <td>
+                                                    <form id="delete_<%=i+1%>">
+                                                        <button type="button" class="btn btn-danger">Отклонить</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-2" />
+                                    <label for="tabs-0-2">Отклонённые заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="#">Ссылка</a></td>
+                                                <td>
+                                                    <form id="delete_<%=i+1%>">
+                                                        <button type="button" class="btn btn-success">Принять</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-3" disabled="disabled" />
+                                    <label for="tabs-0-3">Вкладка 4</label>
+                                    <div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
+<!--        <div class="container">-->
+
+<!--        </div>-->
+    </div>
+</div>
+
+
