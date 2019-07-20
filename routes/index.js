@@ -230,7 +230,9 @@ module.exports = function (passport) {
      *       200:
      *        description: Проекты успешно получены
      *        examples:
-     *           application/json: { "token": "" }
+     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
+     *            list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
      *
      */
     router.get('/api/v1/get-projects', require('./api/v1/get_projects').get);
