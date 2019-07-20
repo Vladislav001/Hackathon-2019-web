@@ -1,0 +1,86 @@
+
+<div class="row">
+    <div class="col">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+
+
+
+                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации">
+
+                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации">
+
+                <input type="email" class="form-control" id="emailCompany" placeholder="Почта компании">
+                <input type="password" class="form-control" id="oldPassorwCompany" placeholder="Старый пароль">
+                <input type="password" class="form-control" id="newPassorwCompany" placeholder="Новый пароль">
+                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт компании">
+
+                <div>
+                    <input class="form-control btn btn-default" id="upLoadImageCompany" type="file"  name="file" />
+
+                </div>
+
+                <div>
+
+
+                    <small class="form-text text-muted">Создание проекта</small>
+                    <form>
+                        <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
+                        <input type="checkbox" class="form-control" id="newProjPayment" >
+                        <input type="text" class="form-control" id="newProjDescription" >
+                        <div>
+                            <small class="form-text text-muted">Изображения проекта</small>
+                            <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
+                        </div>
+                        <small class="form-text text-muted">Технологии</small>
+                        <button>Добавить технологию</button>
+                        <div id="newProjTechnology">
+
+                        </div>
+
+                    </form>
+                    <!--                конец формы создания проекта-->
+
+
+
+                    <small class="form-text text-muted">Существующие проекты</small>
+                    <div>
+                        <%= for(let i=0;i<Model.Projects.length;++i) %>">
+                        <%= { %>">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="<%=Model.Projects[i].Image%>" alt="iamge">
+                            <div class="card-body">
+                                <h5 class="card-title"><%=Model.Projects[i].Name%></h5>
+                                <p class="card-text"><%=Model.Projects[i].Description%></p>
+                                <a href="<%=Model.Projects[i].Id%>" class="btn btn-primary">Страница проекта</a>
+                            </div>
+                        </div>
+
+                        <%= } %>">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="button" class="btn btn-primary">Submit</button>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
