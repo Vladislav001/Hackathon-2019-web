@@ -16,6 +16,9 @@ const studentSchema = mongoose.Schema({
     password: {
         type: String,
     },
+    id_university: {
+        type: Number,
+    },
     token: {
         type: String,
     },

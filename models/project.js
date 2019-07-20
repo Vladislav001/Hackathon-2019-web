@@ -13,11 +13,16 @@ const projectSchema = mongoose.Schema({
         ref: 'Employer'
     },
     images: {
-        type: [String],
+        type: [String]
     },
     complited:{
-        type:Boolean
+        type:Boolean,
+        default: false,
+    },
+    payment:{
+        type:Boolean,
+        default: false,
     }
 });
 
-module.exports = mongoose.model('User', projectSchema );
+module.exports = mongoose.model('Project', projectSchema );

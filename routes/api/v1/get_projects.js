@@ -1,8 +1,10 @@
 const Project = require('../../../models/project');
+const Technology = require('../../../models/technology');
 
 exports.post = async function (req, res) {
     try {
         let projects = await Project.find({});
+        console.log(projects)
         let data = [
             {
                 company: "Название компании",

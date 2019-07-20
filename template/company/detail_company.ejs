@@ -2,7 +2,12 @@
 
 <div class="row">
     <div class="col">
+        <% if(Model.user.image_avatar){%>
         <img src="<%= Model.user.image_avatar%>" alt="Image">
+        <% }else{%>
+
+        <img src="/uploads/test_file.jpg" alt="Image">
+        <% }%>
         <form>
             <div class="form-group">
 
@@ -38,17 +43,18 @@
         <form>
             <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
             <input type="checkbox" class="form-control" id="newProjPayment" >
-            <input type="text" class="form-control" id="newProjDescription" >
+            <input type="text" class="form-control" id="newProjDescription" placeholder="Описание нового проекта">
             <div>
                 <small class="form-text text-muted">Изображения проекта</small>
                 <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
             <small class="form-text text-muted">Технологии</small>
-            <button>Добавить технологию</button>
+            <button onclick="addTechnology()" type="button">Добавить технологию</button>
+            <!--                                    конец формы создания проекта-->
             <div id="newProjTechnology">
 
             </div>
-
+            <button onclick="AddProj()" type="button">Добавить проект</button>
         </form>
 
 <!--                                    конец формы создания проекта-->
@@ -61,13 +67,13 @@
             <% for(var i=0;i<Model.projects.length;++i){ %>
             <div class="card" style="width: 18rem;">
                 <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
-                <img class="card-img-top" src="<%Model.projects[i].images[0]%>" alt="image">
+                <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
                 <% } %>
 
                 <div class="card-body">
-                    <h5 class="card-title"><%Model.projects[i].name%></h5>
-                    <p class="card-text"><%Model.projects[i].description%></p>
-                    <a href="<%Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
+                    <h5 class="card-title"><%=Model.projects[i].name%></h5>
+                    <p class="card-text"><%=Model.projects[i].description%></p>
+                    <a href="<%=Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
                 </div>
             </div>
 
@@ -95,6 +101,42 @@
 <!--    </div>-->
 <!--</div>-->
 
+<script>
 
+    var maxidTechnology=0;
+    function addTechnology(){
+        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+
+    }
+
+
+
+    function AddProj(){
+        var data = new FormData();
+var massFiles1 = document.getElementById('upLoadImagesNewProject').files;
+
+$.each(massFiles1, function (key, value) {
+    data.append('file', value);//name обязательно такое же как и в upload.single('file')
+});
+        data.append('name', document.getElementById('newProjName').value);
+        data.append('description', document.getElementById('newProjDescription').value);
+       // data.append('employerId', Model.user._id.toString());
+        data.append('payment', document.getElementById('newProjPayment').value);
+
+
+        for(let i=0;;++i){
+            let tech=document.getElementById('newTechnology_'+i);
+            if(!tech)
+                break;
+            data.append('technologes['+i+']', tech.value);
+        }
+
+
+    goAjaxRequest({type:'POST',data:data,url:'/create-project'},true);
+    }
+
+
+
+</script>
 
 
