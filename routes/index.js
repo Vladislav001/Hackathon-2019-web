@@ -116,14 +116,14 @@ module.exports = function (passport) {
      *     produces:
      *       - form-data
      *     parameters:
-     *     - name: "id"
-     *       in: "form-data"
-     *       description: "ID записи"
+     *     - name: "x-access-token"
+     *       in: "header"
+     *       description: "Токен"
      *       required: true
      *       type: "string"
-     *     - name: "file"
+     *     - name: "id"
      *       in: "form-data"
-     *       description: "Файл для загрузки"
+     *       description: "ID проекта"
      *       required: true
      *       type: "file"
      *     responses:
@@ -305,6 +305,38 @@ module.exports = function (passport) {
      */
     router.post('/api/v1/detail-project', require('./api/v1/detail_project').post);
 
+    /**
+     * @swagger
+     * /api/v1/membership-request:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Подача заявки на участие в проекте"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "x-access-token"
+     *       in: "header"
+     *       description: "Токен"
+     *       required: true
+     *       type: "string"
+     *     - name: "id"
+     *       in: "form-data"
+     *       description: "ID проекта"
+     *       required: true
+     *       type: "string"
+     *     responses:
+     *       200:
+     *        description: Заявка подана
+     *        examples:
+     *           application/json: { message: Заявка подана}
+     *       401:
+     *        description: Вы уже подали заявку
+     *        examples:
+     *           application/json: { message: Вы уже подали заявку}
+     *
+     */
     router.post('/api/v1/student/membership-request', verifyToken, require('./api/v1/student/membership_request').post);
 
 

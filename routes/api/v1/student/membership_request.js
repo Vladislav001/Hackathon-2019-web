@@ -5,14 +5,26 @@ const projStudentSchema = require('../../../../models/project_student');
 exports.post = async function (req, res) {
     try {
         let projectID = req.body.id;
-        let newProjStudentSchema = new projStudentSchema();
-       // newProjStudentSchema.projectId = projectID;
-        //newProjStudentSchema.studentId = projectID;
 
-        console.log(res.studentId);
+        let alreadyExist = await projStudentSchema.find({projectId: projectID, studentId: res.studentId});
 
+        if(alreadyExist.length == 0)
+        {
+            let newProjStudentSchema = new projStudentSchema();
+            newProjStudentSchema.projectId = projectID;
+            newProjStudentSchema.studentId = res.studentId;
 
-        res.status(200).send('');
+            newProjStudentSchema.save();
+
+            res.status(200).send({
+                message: "Заявка подана"
+            });
+        } else {
+            res.status(401).send({
+                message: "Вы уже подали заявку"
+            });
+        }
+
     } catch (err) {
         throw err;
     }
