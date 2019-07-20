@@ -1,4 +1,5 @@
-/node_modules/*
-*.xml
-.idea
-
+/node_modules/* 
+*.xml 
+.idea 
+app.js 
+routes/index.js

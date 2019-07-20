@@ -1,6 +1,6 @@
 const login = require('./login');
 const signup = require('./signup');
-const User = require('../models/user');
+const Employer = require('../models/employer');
 
 module.exports = function(passport){
 
@@ -11,7 +11,7 @@ module.exports = function(passport){
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+    Employer.findById(id, function(err, user) {
       console.log('deserializing user:',user);
       done(err, user);
     });

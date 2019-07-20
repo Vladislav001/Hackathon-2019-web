@@ -1,7 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bCrypt = require('bcrypt-nodejs');
-const User = require('../models/user');
-
+const Employer = require('../models/employer');
 
 module.exports = function (passport) {
 
@@ -10,7 +9,7 @@ module.exports = function (passport) {
   },
     function (req, email, password, done) {
 
-      User.findOne({ 'email': email },
+        Employer.findOne({ 'email': email },
         function (err, user) {
           if (err)
             return done(err);

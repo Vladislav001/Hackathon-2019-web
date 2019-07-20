@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
+const Employer = require('../models/employer');
 const bCrypt = require('bcrypt-nodejs');
 
 module.exports = function (passport) {
@@ -11,7 +11,7 @@ module.exports = function (passport) {
 
       findOrCreateUser = function () {
 
-        User.findOne({ 'email': email }, function (err, user) {
+        Employer.findOne({ 'email': email }, function (err, user) {
           if (err) {
             console.log('Error in SignUp: ' + err);
             return done(err);
@@ -22,21 +22,21 @@ module.exports = function (passport) {
             return done(null, false, req.flash('message', 'User already exists with this email'));
           } else {
 
-            let newUser = new User();
+            let newEmployer = new Employer();
 
-            newUser.company = req.body.company;
-            newUser.site = req.body.site;
-            newUser.email = email;
-            newUser.password = createHash(password);
+            newEmployer.company = req.body.company;
+            newEmployer.site = req.body.site;
+            newEmployer.email = email;
+            newEmployer.password = createHash(password);
 
-            newUser.save(function (err) {
+            newEmployer.save(function (err) {
               if (err) {
                 console.log('Error in Saving user: ' + err);
                 throw err;
               }
               console.log('User Registration succesful');
 
-              return done(null, newUser);
+              return done(null, newEmployer);
             });
           }
         });
