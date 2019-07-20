@@ -59,9 +59,9 @@ module.exports = function (passport) {
     });
 
 
-    router.get('/detail-project', require('./detail_project/card').get);
-    router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
-    //  router.get('/detail_project', require('./detail_project/detail_project_').get);
+   // router.get('/detail-project', require('./detail_project/card').get);
+    router.get('/detail-company',  require('./company/detail_company').get);
+      //router.get('/detail-project', require('./detail_project/detail_project').get);
 
     router.post('/create-project', upload.any('files'), require('./detail_project/add_project').post);
 

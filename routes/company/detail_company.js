@@ -14,7 +14,14 @@ exports.get = async function (req, res) {
             //
             // }
             Model:{
-                user:req.user,
+                user:{
+                    company:'company1',
+                    site:'site1',
+                    email:'email1',
+                    password:'password1',
+                    image_avatar:'',
+
+                },
                 projects:[
                     {name:'name1',
                         description:'description1',
