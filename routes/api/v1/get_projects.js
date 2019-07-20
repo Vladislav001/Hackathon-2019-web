@@ -32,7 +32,7 @@ exports.post = async function (req, res) {
                     competitions.push(technologies[technology].name);
                 }
                 oneProject.list_competitions = competitions;
-                oneProject.count_orders = 'ТУТА БУДЕТ СУЩНОСТЬ';
+                oneProject.count_orders = 33;
                 oneProject.approved_by_university = ["adad", "adadeq"];
                 data.push( oneProject);
             }
