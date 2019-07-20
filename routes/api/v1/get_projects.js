@@ -7,23 +7,34 @@ exports.post = async function (req, res) {
         let data = [];
         let projects = await Project.find({});
 
-     //   projects.forEach(project => {
             for (let project = 0; project < projects.length; project++ )
             {
-                let oneProject = [];
+                let oneProject = {};
                 let images = [];
                 for (let i = 0; i < projects[project].images.length; i++) {
-                    images.push(`${req.headers['host']}/${projects[project].images[i]}`);
+                    images.push(`${req.headers['host']}${projects[project].images[i]}`);
                 }
 
-                projects[project].images = images;
+                oneProject.project_name = projects[project].name;
+                oneProject.project_description = projects[project].description;
+                oneProject.project_foto = images[0];
 
                 let employer = await Employer.findOne({_id:  projects[project].employerId});
-                console.log(employer);
-                data.push( projects[project]);
+                oneProject.company = employer.company;
+                oneProject.company_avatar = employer.image_avatar;
+
+                let technologies =  await Technology.find({projectId:  projects[project]._id});
+                let competitions = [];
+                for (let technology = 0; technology < technologies.length; technology++ )
+                {
+                    competitions.push(technologies[technology].name);
+                }
+                oneProject.list_competitions = competitions;
+                oneProject.count_orders = 'ТУТА БУДЕТ СУЩНОСТЬ';
+                oneProject.approved_by_university = 'ТУТА БУДЕТ ЧТО ТО ЕЩЕ';
+                data.push( oneProject);
             }
 
-      //  });
 
         res.status(200).send(data);
     } catch (err) {
