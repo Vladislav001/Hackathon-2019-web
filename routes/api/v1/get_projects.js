@@ -1,7 +1,9 @@
 const Project = require('../../../models/project');
 const Technology = require('../../../models/technology');
 const Employer = require('../../../models/employer');
+const projStudentSchema = require('../../../models/project_student');
 const constants = require('../../../functions/constants');
+
 
 exports.post = async function (req, res) {
     try {
@@ -32,9 +34,11 @@ exports.post = async function (req, res) {
                     competitions.push(technologies[technology].name);
                 }
                 oneProject.list_competitions = competitions;
-                oneProject.count_orders = 33;
+
+                let countMemberships = await projStudentSchema.countDocuments({projectId: projects[project]._id});
+                oneProject.count_orders = countMemberships;
                 oneProject.approved_by_university = ["adad", "adadeq"];
-                data.push( oneProject);
+                data.push(oneProject);
             }
 
 
