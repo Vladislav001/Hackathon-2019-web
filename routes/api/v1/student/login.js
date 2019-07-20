@@ -31,8 +31,18 @@ exports.post = function (req, res) {
             expiresIn: constants.TIME_LIFE_TOKEN
         });
 
-        res.status(200).json({
-            "token": token
+        Student.updateOne({
+            "_id": user._id
+        }, {
+            $set: {
+                "token": token,
+            }
+        }, function (err, results) {
+            if (err) throw err;
+
+            res.status(200).json({
+                "token": token
+            });
         });
     });
 };

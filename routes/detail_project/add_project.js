@@ -8,13 +8,14 @@ exports.post = async function (req, res) {
 
         let massImgnames=[];
         for(let i=0;i<req.files.length;++i){
-            massImgnames.push('/uploads/'+req.files[i].originalname);
+            massImgnames.push('uploads/'+req.files[i].originalname);
         }
 
-        let payment=false;
-if(req.body.payment=='on'){
-    payment=true;
-}
+//         let payment=false;
+// if(req.body.payment=='on'){
+//     payment=true;
+// }
+        let payment=req.body.payment;
 
         let newProj=new Project({
             name:req.body.name,

@@ -62,6 +62,7 @@ module.exports = function (passport) {
     router.get('/detail-project', require('./detail_project/detail_project').get);
     router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
     router.post('/create-project', upload.any('files'), require('./detail_project/add_project').post);
+    router.post('/change-company', isAuthenticated,upload.single('file'), require('./company/change_company').post);
 
 
 ////**** API ****\\\\
@@ -115,14 +116,14 @@ module.exports = function (passport) {
      *     produces:
      *       - form-data
      *     parameters:
-     *     - name: "id"
-     *       in: "form-data"
-     *       description: "ID записи"
+     *     - name: "x-access-token"
+     *       in: "header"
+     *       description: "Токен"
      *       required: true
      *       type: "string"
-     *     - name: "file"
+     *     - name: "id"
      *       in: "form-data"
-     *       description: "Файл для загрузки"
+     *       description: "ID проекта"
      *       required: true
      *       type: "file"
      *     responses:
@@ -270,9 +271,9 @@ module.exports = function (passport) {
      *       200:
      *        description: Проекты успешно получены
      *        examples:
-     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *           application/json: { id:13dad, company: Название компании, company_avatar: Ссылка на аватарку компании,
      *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
-     *            list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *            list_competitions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
      *
      */
     router.post('/api/v1/get-projects', require('./api/v1/get_projects').post);
@@ -303,6 +304,40 @@ module.exports = function (passport) {
      *
      */
     router.post('/api/v1/detail-project', require('./api/v1/detail_project').post);
+
+    /**
+     * @swagger
+     * /api/v1/membership-request:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Подача заявки на участие в проекте"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "x-access-token"
+     *       in: "header"
+     *       description: "Токен"
+     *       required: true
+     *       type: "string"
+     *     - name: "id"
+     *       in: "form-data"
+     *       description: "ID проекта"
+     *       required: true
+     *       type: "string"
+     *     responses:
+     *       200:
+     *        description: Заявка подана
+     *        examples:
+     *           application/json: { message: Заявка подана}
+     *       401:
+     *        description: Вы уже подали заявку
+     *        examples:
+     *           application/json: { message: Вы уже подали заявку}
+     *
+     */
+    router.post('/api/v1/student/membership-request', verifyToken, require('./api/v1/student/membership_request').post);
 
 
     return router;
