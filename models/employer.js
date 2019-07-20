@@ -21,7 +21,8 @@ const employerSchema = mongoose.Schema({
         default: '/uploads/test_file.jpg'
     },
     phone_number: {
-        type: String
+        type: String,
+        default: ''
     },
 });
 

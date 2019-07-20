@@ -103,6 +103,14 @@
 
 <script>
 
+    var maxidTechnology=0;
+    function addTechnology(){
+        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+
+    }
+
+
+
     function AddProj(){
         var data = new FormData();
 var massFiles1 = document.getElementById('upLoadImagesNewProject').files;
@@ -116,8 +124,11 @@ $.each(massFiles1, function (key, value) {
         data.append('payment', document.getElementById('newProjPayment').value);
 
 
-        for(let i=0;document.getElementById('technology_'+i);++i){
-            data.append('technologes['+i+']', document.getElementById('newTechnology_'+i).value);
+        for(let i=0;;++i){
+            let tech=document.getElementById('newTechnology_'+i);
+            if(!tech)
+                break;
+            data.append('technologes['+i+']', tech.value);
         }
 
 
@@ -125,11 +136,6 @@ $.each(massFiles1, function (key, value) {
     }
 
 
-var maxidTechnology=0;
-    function addTechnology(){
-        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
-
-    }
 
 </script>
 
