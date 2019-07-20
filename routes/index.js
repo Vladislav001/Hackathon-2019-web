@@ -215,5 +215,47 @@ module.exports = function (passport) {
      */
     router.post('/api/v1/student/registration', require('./api/v1/student/registration').post);
 
+    /**
+     * @swagger
+     * /api/v1/student/login:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Авторизация студента"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "email"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Почта"
+     *       required: true
+     *       type: "string"
+     *     - name: "password"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Пароль"
+     *       required: true
+     *       type: "string"
+     *     responses:
+     *       200:
+     *        description: Пользователь успешно авторизован
+     *        examples:
+     *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+     *       401:
+     *         description: Введены неверные данные
+     *         examples:
+     *           application/json:
+     *            {
+     *              errors:
+     *              [
+     *                {
+     *                 id: 2, message: Вы ввели неверную почту или пароль
+     *                }
+     *              ]
+     *            }
+     *
+     */
+    router.post('/api/v1/student/login', require('./api/v1/student/login').post);
+
     return router;
 };

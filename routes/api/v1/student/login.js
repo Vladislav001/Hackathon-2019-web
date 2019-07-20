@@ -1,48 +1,38 @@
 const Student = require('../../../../models/student');
-const jwt = require('jsonwebtoken');
-const apiError = require('../../../../functions/apierror');
 const constants = require('../../../../functions/constants');
+const apiError = require('../../../../functions/apierror');
+const bCryptPassword = require('../../../../functions/bcryptpassword');
+const jwt = require('jsonwebtoken');
 
 exports.post = function (req, res) {
 
-    let login = req.body.login;
+    let email = req.body.email;
     let password = req.body.password;
     let errors = [];
 
-    PID.findOne({ 'login': login }, function (err, pid) {
+    Student.findOne({ 'email': email }, function (err, user) {
         if (err) throw err;
 
-        if (!pid) {
-            errors.push(apiError.createError("2", apiError.createInvalidCode('login-and-password'), 'Введены неверные данные', 'Вы ввели неверный login или password'));
+        if (!user) {
+            errors.push(apiError.createError("2", 'Вы ввели неверную почту или пароль'));
             return res.status(401).json({
                 errors
             });
         }
 
-        if (pid.password != password) {
-            errors.push(apiError.createError("2", apiError.createInvalidCode('login-and-password'), 'Введены неверные данные', 'Вы ввели неверный login или password'));
+        if (!bCryptPassword.isValidPassword(user, password)) {
+            errors.push(apiError.createError("2", 'Вы ввели неверную почту или пароль'));
             return res.status(401).json({
                 errors
             });
         }
 
-        let token = jwt.sign({ id: pid._id }, "OJ5cIMkraDqoGfVv6dyYu7wDF", {
+        let token = jwt.sign({ id: user._id }, constants.SECRET_STRING, {
             expiresIn: constants.TIME_LIFE_TOKEN
         });
 
-
-        PID.updateOne({
-            "_id": pid._id
-        }, {
-            $set: {
-                "token": token,
-            }
-        }, function (err, results) {
-            if (err) throw err;
-
-            res.status(200).json({
-                "token": token
-            });
+        res.status(200).json({
+            "token": token
         });
     });
 };
