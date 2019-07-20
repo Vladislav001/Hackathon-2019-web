@@ -17,7 +17,8 @@ const employerSchema = mongoose.Schema({
         required: true
     },
     image_avatar: {
-        type: String
+        type: String,
+        default: '/uploads/test_file.jpg'
     },
     phone_number: {
         type: String
