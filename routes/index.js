@@ -60,8 +60,8 @@ module.exports = function (passport) {
 
 
     router.get('/detail-project', require('./detail_project/card').get);
-  //  router.get('/detail_company', require('./company/datail_company').get);
-  //  router.get('/detail_project', require('./datail_project/detail_project_').get);
+  //  router.get('/detail_company', require('./company/detail_company').get);
+  //  router.get('/detail_project', require('./detail_project/detail_project_').get);
 
 
 
@@ -218,45 +218,22 @@ module.exports = function (passport) {
 
     /**
      * @swagger
-     * /api/v1/student/login:
+     * /api/v1/get-projects:
      *   post:
      *     tags:
      *       - ""
-     *     summary: "Авторизация студента"
+     *     summary: "Получение проектов"
      *     description: ""
      *     produces:
      *       - application/json
-     *     parameters:
-     *     - name: "email"
-     *       in: "x-www-form-urlencoded"
-     *       description: "Почта"
-     *       required: true
-     *       type: "string"
-     *     - name: "password"
-     *       in: "x-www-form-urlencoded"
-     *       description: "Пароль"
-     *       required: true
-     *       type: "string"
      *     responses:
      *       200:
-     *        description: Пользователь успешно авторизован
+     *        description: Проекты успешно получены
      *        examples:
-     *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
-     *       401:
-     *         description: Введены неверные данные
-     *         examples:
-     *           application/json:
-     *            {
-     *              errors:
-     *              [
-     *                {
-     *                 id: 2, message: Вы ввели неверную почту или пароль
-     *                }
-     *              ]
-     *            }
+     *           application/json: { "token": "" }
      *
      */
-    router.post('/api/v1/student/login', require('./api/v1/student/login').post);
+    router.get('/api/v1/get-projects', require('./api/v1/get_projects').get);
 
 
     return router;
