@@ -1,0 +1,34 @@
+<% layout('../layout/pattern') -%>
+
+<div class="container">
+    <h1 class="text-center m-3">Регистрация</h1>
+    <div class="row justify-content-md-center">
+        <div class="col col-md-8 col-lg-6">
+            <form action="/signUp" method="POST">
+                <div class="form-group">
+                    <label for="companyName">Название компании</label>
+                    <input type="text" name="company" class="form-control" id="companyName"
+                           placeholder="Название компании" required>
+                </div>
+                <div class="form-group">
+                    <label for="linkSite">Ссылка на сайт компании</label>
+                    <input type="text" name="site" class="form-control" id="linkSite"
+                           placeholder="Ссылка на сайт компании" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Почта</label>
+                    <input type="email" name="username" class="form-control" id="email" placeholder="Почта" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Пароль"
+                           required>
+                </div>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <h6 class="text-right"><a href="/">Вход</a></h6>
+            </form>
+        </div>
+
+    </div>
+</div>
+</div>

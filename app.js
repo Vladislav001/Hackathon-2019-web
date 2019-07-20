@@ -5,13 +5,16 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
 // connect to DB
 //mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
-//mongoose.connect('mongodb+srv://admin:123456v@cluster0-qjjoz.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}); // guriev
-mongoose.connect('mongodb+srv://hackathon_2019:hackathon123456@cluster0-pkmka.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});  // avdosev
+mongoose.connect('mongodb+srv://admin:123456v@cluster0-qjjoz.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}); // guriev
+//mongoose.connect('mongodb+srv://hackathon_2019:hackathon123456@cluster0-pkmka.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});  // avdosev
 
 mongoose.set('useFindAndModify', false);
 
@@ -23,14 +26,29 @@ app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 
-app.use(logger('dev')); 
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());  
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
- 
-const routes = require('./routes/index');
-app.use('/', routes);  
+
+
+app.use(session({
+  secret: 'codeworkrsecret',
+  saveUninitialized: false,
+  resave: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+
+const initPassport = require('./passport/init');
+initPassport(passport);
+
+const routes = require('./routes/index')(passport);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
