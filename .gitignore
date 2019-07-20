@@ -1,5 +1,11 @@
 /node_modules/*
 *.xml
 .idea
+<<<<<<< HEAD
 app.js 
 routes/index.js
+=======
+app.js
+routes/index.js
+
+>>>>>>> develop
