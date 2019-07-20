@@ -16,6 +16,13 @@ const employerSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image_avatar: {
+        type: String,
+        default: '/uploads/test_file.jpg'
+    },
+    phone_number: {
+        type: String
+    },
 });
 
 module.exports = mongoose.model('Employer', employerSchema);

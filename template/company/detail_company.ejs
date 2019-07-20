@@ -1,89 +1,99 @@
+<% layout ('../layout/pattern') -%>
 
 <div class="row">
     <div class="col">
+        <img src="<%= Model.user.image_avatar%>" alt="Image">
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
 
 
+                <label for="nameOrganizzation">Название организации</label>
+                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации" value="<%= Model.user.company%>">
 
-                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации">
+                <label for="phoneNumberOrganizzation">Телефон организации</label>
+                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<%= Model.user.phone_number%>">
 
-                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации">
+                <label for="phoneNumberOrganizzation">Почта организации</label>
+                <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<%= Model.user.email%>">
 
-                <input type="email" class="form-control" id="emailCompany" placeholder="Почта компании">
+                <label for="oldPassorwCompany">Старый пароль</label>
                 <input type="password" class="form-control" id="oldPassorwCompany" placeholder="Старый пароль">
+
+                <label for="newPassorwCompany">Новый пароль</label>
                 <input type="password" class="form-control" id="newPassorwCompany" placeholder="Новый пароль">
-                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт компании">
+
+                <label for="linkCompany">Ссылка на сайт организации</label>
+                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<%= Model.user.site%>">
 
                 <div>
+                    <label for="upLoadImageCompany">Изменить Изображение организации</label>
                     <input class="form-control btn btn-default" id="upLoadImageCompany" type="file"  name="file" />
 
                 </div>
 
-                <div>
-
+            </div>
+        </form>
 
                     <small class="form-text text-muted">Создание проекта</small>
-                    <form>
-                        <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
-                        <input type="checkbox" class="form-control" id="newProjPayment" >
-                        <input type="text" class="form-control" id="newProjDescription" >
-                        <div>
-                            <small class="form-text text-muted">Изображения проекта</small>
-                            <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
-                        </div>
-                        <small class="form-text text-muted">Технологии</small>
-                        <button>Добавить технологию</button>
-                        <div id="newProjTechnology">
+        <form>
+            <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
+            <input type="checkbox" class="form-control" id="newProjPayment" >
+            <input type="text" class="form-control" id="newProjDescription" >
+            <div>
+                <small class="form-text text-muted">Изображения проекта</small>
+                <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
+            </div>
+            <small class="form-text text-muted">Технологии</small>
+            <button>Добавить технологию</button>
+            <div id="newProjTechnology">
 
-                        </div>
+            </div>
 
-                    </form>
-                    <!--                конец формы создания проекта-->
+        </form>
+
+<!--                                    конец формы создания проекта-->
 
 
 
                     <small class="form-text text-muted">Существующие проекты</small>
-                    <div>
-                        <%= for(let i=0;i<Model.Projects.length;++i) %>">
-                        <%= { %>">
-                        <div class="card" style="width: 18rem;">
-                            <%= if(Model.Projects[i].images.length>0) %>">
-                            <%= { %>">
-                            <img class="card-img-top" src="<%=Model.Projects[i].images[0]%>" alt="image">
-                            <%= } %>">
+        <small class="form-text text-muted">Существующие проекты</small>
+        <div>
+            <% for(var i=0;i<Model.projects.length;++i){ %>
+            <div class="card" style="width: 18rem;">
+                <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
+                <img class="card-img-top" src="<%Model.projects[i].images[0]%>" alt="image">
+                <% } %>
 
-                            <div class="card-body">
-                                <h5 class="card-title"><%=Model.Projects[i].name%></h5>
-                                <p class="card-text"><%=Model.Projects[i].description%></p>
-                                <a href="<%=Model.Projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
-                            </div>
-                        </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%Model.projects[i].name%></h5>
+                    <p class="card-text"><%Model.projects[i].description%></p>
+                    <a href="<%Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
+                </div>
+            </div>
 
-                        <%= } %>">
+            <% } %>
 
-                    </div>
+        </div>
                 </div>
 
             </div>
 
 
 
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="button" class="btn btn-primary">Submit</button>
-        </form>
+<!--            <div class="form-group">-->
+<!--                <label for="exampleInputPassword1">Password</label>-->
+<!--                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+<!--            </div>-->
+<!--            <div class="form-group form-check">-->
+<!--                <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--            </div>-->
+<!--            <button type="button" class="btn btn-primary">Submit</button>-->
+<!--       -->
 
 
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
 
 
 

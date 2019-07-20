@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const swaggerJSDoc = require('swagger-jsdoc');
 const isAuthenticated = require('../middleware/is_authenticated');
+const verifyToken = require('../middleware/verify_token');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -43,12 +44,12 @@ module.exports = function (passport) {
 
 
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/company-detail',
+        successRedirect: '/detail-company',
         failureRedirect: '/',
         failureFlash: true
     }));
     router.post('/login', passport.authenticate('login', {
-        successRedirect: '/company-detail',
+        successRedirect: '/detail-company',
         failureRedirect: '/',
         failureFlash: true
     }));
@@ -58,9 +59,9 @@ module.exports = function (passport) {
     });
 
 
-    router.get('/detail-project', require('./detail_project/detail_project_').get);
-  //  router.get('/detail_company', require('./company/datail_company').get);
-  //  router.get('/detail_project', require('./datail_project/detail_project_').get);
+    router.get('/detail-project', require('./detail_project/card').get);
+    router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
+  //  router.get('/detail_project', require('./detail_project/detail_project_').get);
 
 
 
@@ -103,7 +104,7 @@ module.exports = function (passport) {
      *        examples:
      *           application/json: { "_id": "5d1bab42042e52e0444e81af", "name": "some" }
      */
-    router.post('/api/v1/example', require('./api/v1/example').post);
+    router.post('/api/v1/example', verifyToken, require('./api/v1/example').post);
 
     /**
      * @swagger
@@ -256,6 +257,55 @@ module.exports = function (passport) {
      *
      */
     router.post('/api/v1/student/login', require('./api/v1/student/login').post);
+
+    /**
+     * @swagger
+     * /api/v1/get-projects:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получение проектов"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *        description: Проекты успешно получены
+     *        examples:
+     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
+     *            list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *
+     */
+    router.post('/api/v1/get-projects', require('./api/v1/get_projects').post);
+
+    /**
+     * @swagger
+     * /api/v1/detail-project:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получение детальной информации о проекте"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "id"
+     *       in: "form-data"
+     *       description: "ID проекта"
+     *       required: true
+     *       type: "string"
+     *     responses:
+     *       200:
+     *        description: Проекты успешно получены
+     *        examples:
+     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
+     *            project_fotos: ["Ссылка 1", "Ссылка 2"], list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *
+     */
+    router.post('/api/v1/detail-project', require('./api/v1/detail_project').post);
+
 
     return router;
 };
