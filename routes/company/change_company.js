@@ -7,7 +7,7 @@ exports.post = async function (req, res) {
         let updateEmpl={
             company:req.body.name,
             site:req.body.site,
-            email:req.body.email,
+            //email:req.body.email,
             //image_avatar
             phone_number:req.body.phoneNumber
 
