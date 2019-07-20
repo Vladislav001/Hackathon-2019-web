@@ -12,10 +12,9 @@ const passport = require('passport');
 const app = express();
 
 // connect to DB
-//mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
+mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
 //mongoose.connect('mongodb+srv://admin:123456v@cluster0-qjjoz.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}); // guriev
 //mongoose.connect('mongodb+srv://hackathon_2019:hackathon123456@cluster0-pkmka.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});  // avdosev
-mongoose.connect("mongodb://localhost:27017/hakatonSoloDb", { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 
 
