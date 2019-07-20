@@ -5,7 +5,7 @@ exports.get = async function (req, res) {
     try {
         //let company= await Empl.findOne({ _id: req.user._id });
         //let projects= await Project.find({employerId:res.user._id});;
-       // console.log('adadadda');
+
 
         res.render('company/detail_company', {
             // Model: {
@@ -16,8 +16,7 @@ exports.get = async function (req, res) {
             Model:{
                 user:req.user,
                 projects:[
-                    {
-                        name:'name1',
+                    {name:'name1',
                         description:'description1',
                         _id:'123'
                     }

@@ -2,19 +2,24 @@
 
 <div class="row">
     <div class="col">
-        <img src="<%= Model.user.image_avatar%>" alt="Image">
+        <% if(Model.user.image_avatar){%>
+        <img src="<% Model.user.image_avatar%>" alt="Image">
+        <% }else{%>
+
+        <img src="/uploads/test_file.jpg" alt="Image">
+        <% }%>
         <form>
             <div class="form-group">
 
 
                 <label for="nameOrganizzation">Название организации</label>
-                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации" value="<%= Model.user.company%>">
+                <input type="text" class="form-control" id="nameOrganizzation" placeholder="Название организации" value="<% Model.user.company%>">
 
                 <label for="phoneNumberOrganizzation">Телефон организации</label>
-                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<%= Model.user.phone_number%>">
+                <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<% Model.user.phone_number%>">
 
                 <label for="phoneNumberOrganizzation">Почта организации</label>
-                <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<%= Model.user.email%>">
+                <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<% Model.user.email%>">
 
                 <label for="oldPassorwCompany">Старый пароль</label>
                 <input type="password" class="form-control" id="oldPassorwCompany" placeholder="Старый пароль">
@@ -23,7 +28,7 @@
                 <input type="password" class="form-control" id="newPassorwCompany" placeholder="Новый пароль">
 
                 <label for="linkCompany">Ссылка на сайт организации</label>
-                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<%= Model.user.site%>">
+                <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<% Model.user.site%>">
 
                 <div>
                     <label for="upLoadImageCompany">Изменить Изображение организации</label>
@@ -44,7 +49,8 @@
                 <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
             <small class="form-text text-muted">Технологии</small>
-            <button type="button">Добавить технологию</button>
+            <button onclick="addTechnology()" type="button">Добавить технологию</button>
+            <!--                                    конец формы создания проекта-->
             <div id="newProjTechnology">
 
             </div>
@@ -98,7 +104,31 @@
 <script>
 
     function AddProj(){
-    goAjaxRequest({type:'POST',data:{name:'nm1'},url:'/add-example'});
+        var data = new FormData();
+var massFiles1 = document.getElementById('upLoadImagesNewProject').files;
+
+$.each(massFiles1, function (key, value) {
+    data.append('file', value);//name обязательно такое же как и в upload.single('file')
+});
+        data.append('name', document.getElementById('newProjName').value);
+        data.append('description', document.getElementById('newProjDescription').value);
+       // data.append('employerId', Model.user._id.toString());
+        data.append('payment', document.getElementById('newProjPayment').value);
+
+
+        for(let i=0;document.getElementById('technology_'+i);++i){
+            data.append('technologes['+i+']', document.getElementById('newTechnology_'+i).value);
+        }
+
+
+    goAjaxRequest({type:'POST',data:data,url:'/create-project'},true);
+    }
+
+
+var maxidTechnology=0;
+    function addTechnology(){
+        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+
     }
 
 </script>

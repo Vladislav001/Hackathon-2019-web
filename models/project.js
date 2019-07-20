@@ -18,6 +18,10 @@ const projectSchema = mongoose.Schema({
     complited:{
         type:Boolean,
         default: false,
+    },
+    payment:{
+        type:Boolean,
+        default: false,
     }
 });
 
