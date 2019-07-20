@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 /node_modules/*
 *.xml
 .idea
-app.js
-routes/index.js
-
-=======
-/node_modules/* 
-*.xml 
-.idea 
 app.js 
 routes/index.js
->>>>>>> 2ae8ef457fe4522167361fc7f761605190a25ed7
