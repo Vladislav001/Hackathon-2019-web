@@ -7,6 +7,13 @@ const projectSchema = mongoose.Schema({
     },
     description: {
         type: String,
+    },
+    employerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employer'
+    },
+    images: {
+        type: [String],
     }
 });
 

@@ -49,11 +49,15 @@
                         <%= for(let i=0;i<Model.Projects.length;++i) %>">
                         <%= { %>">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="<%=Model.Projects[i].Image%>" alt="iamge">
+                            <%= if(Model.Projects[i].images.length>0) %>">
+                            <%= { %>">
+                            <img class="card-img-top" src="<%=Model.Projects[i].images[0]%>" alt="image">
+                            <%= } %>">
+
                             <div class="card-body">
-                                <h5 class="card-title"><%=Model.Projects[i].Name%></h5>
-                                <p class="card-text"><%=Model.Projects[i].Description%></p>
-                                <a href="<%=Model.Projects[i].Id%>" class="btn btn-primary">Страница проекта</a>
+                                <h5 class="card-title"><%=Model.Projects[i].name%></h5>
+                                <p class="card-text"><%=Model.Projects[i].description%></p>
+                                <a href="<%=Model.Projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
                             </div>
                         </div>
 
