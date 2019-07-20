@@ -32,7 +32,7 @@ exports.post = async function (req, res) {
         if(req.body.technologes){
             for(let i=0;i<req.body.technologes.length;++i){
                 // massTechnologes.push(req.body.technologes[i]);
-                let tech=new Technology({name:req.body.technologes[i],projectId:newProj._id});
+                let tech=new Technology({name:req.body.technologes[i].toLowerCase().trim(),projectId:newProj._id});
                 tech.save();
             }
         }
