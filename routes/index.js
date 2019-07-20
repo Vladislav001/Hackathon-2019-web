@@ -59,6 +59,10 @@ module.exports = function (passport) {
 
 
     router.get('/detail-project', require('./detail_project/card').get);
+  //  router.get('/detail_company', require('./company/datail_company').get);
+  //  router.get('/detail_project', require('./datail_project/detail_project_').get);
+
+
 
 
 ////**** API ****\\\\
@@ -148,6 +152,68 @@ module.exports = function (passport) {
      *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
      */
     router.post('/api/v1/get-universities', require('./api/v1/get_universities').post);
+
+    /**
+     * @swagger
+     * /api/v1/student/registration:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Регистрация студента"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "email"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Почта"
+     *       required: true
+     *       type: "string"
+     *     - name: "password"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Пароль"
+     *       required: true
+     *       type: "string"
+     *     - name: "first_name"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Имя"
+     *       required: true
+     *       type: "string"
+     *     - name: "second_name"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Фамилия"
+     *       required: true
+     *       type: "string"
+     *     - name: "last_name"
+     *       in: "x-www-form-urlencoded"
+     *       description: "Отчество"
+     *       required: true
+     *       type: "string"
+     *     - name: "id_university"
+     *       in: "x-www-form-urlencoded"
+     *       description: "ID университета"
+     *       required: true
+     *       type: "integer"
+     *     responses:
+     *       200:
+     *        description: Пользователь успешно зарегистрирован
+     *        examples:
+     *           application/json: { "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMTdkMWE1ZjI5MGNjMGRhMDIzYTQwYyIsImlhdCI6MTU0NTA2NDg2OSwiZXhwIjoxNTQ1MTUxMjY5fQ.Qb-klBvif8IhW4YXAoOftdLSpiqBgl7wMTsj0gMxPsU" }
+     *       401:
+     *         description: Введены неверные данные
+     *         examples:
+     *           application/json:
+     *            {
+     *              errors:
+     *              [
+     *                {
+     *                 id: 1, message: Пользователь с такой почтой уже зарегистрирован
+     *                }
+     *              ]
+     *            }
+     *
+     */
+    router.post('/api/v1/student/registration', require('./api/v1/student/registration').post);
 
     return router;
 };
