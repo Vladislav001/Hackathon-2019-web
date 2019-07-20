@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%=Model.projects[i].name%></h5>
                     <p class="card-text"><%=Model.projects[i].description%></p>
-                    <a href="<%=Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
+                    <a href="/detail-project/<%=Model.projects[i]._id.toString()%>" class="btn btn-primary">Страница проекта</a>
                 </div>
             </div>
 
