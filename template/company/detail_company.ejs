@@ -124,9 +124,10 @@
         data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
 
 
-        goAjaxRequest({type:'POST',data:data,url:'/change-company'},true);
+        goAjaxRequest({type:'POST',data:data,url:'/change-company',funcComplete:function(){
+                location.reload(true)
 
-
+            }},true);
 
 
     }
@@ -143,7 +144,8 @@ $.each(massFiles1, function (key, value) {
         data.append('name', document.getElementById('newProjName').value);
         data.append('description', document.getElementById('newProjDescription').value);
        // data.append('employerId', Model.user._id.toString());
-        data.append('payment', document.getElementById('newProjPayment').value);
+       // data.append('payment', document.getElementById('newProjPayment').value);
+        data.append('payment', $("#newProjPayment").attr("checked") == 'checked');
 
 
         for(let i=0;;++i){
@@ -154,7 +156,10 @@ $.each(massFiles1, function (key, value) {
         }
 
 
-    goAjaxRequest({type:'POST',data:data,url:'/create-project'},true);
+    goAjaxRequest({type:'POST',data:data,url:'/create-project',funcComplete:function(){
+            location.reload(true)
+
+        }},true);
     }
 
 
