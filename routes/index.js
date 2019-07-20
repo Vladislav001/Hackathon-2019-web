@@ -32,6 +32,12 @@ const upload = multer({
 
 module.exports = function (passport) {
 
+    // для вывода верхнего и бокового меню
+    router.use(function (req, res, next) {
+        res.locals.authorized = req.isAuthenticated();
+        next();
+    });
+
     router.get('/', require('./auth/login').get);
     router.get('/registration', require('./auth/registration').get);
 
@@ -53,13 +59,6 @@ module.exports = function (passport) {
 
 
     router.get('/detail-project', require('./detail_project/card').get);
-
-// Тестовые запросы
-// router.get('/', require('./example/main_example').get);
-// router.post('/add-example', require('./example/add_example').post);
-// router.post('/delete-example/id:_id', require('./example/delete_example').post);
-// router.post('/update-example/id:_id', require('./example/update_example').post);
-// router.get('/example/id:_id', require('./example/detail_example').get);
 
 
 ////**** API ****\\\\
@@ -131,8 +130,24 @@ module.exports = function (passport) {
      */
     router.post('/api/v1/example-upload-file', upload.single('file'), require('./api/v1/example_upload_file').post);
 
-// websockets
-    require('./api/v1/example_websocket');
+
+    /**
+     * @swagger
+     * /api/v1/get-universities:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получить список университетов города"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *        description: Example data
+     *        examples:
+     *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
+     */
+    router.post('/api/v1/get-universities', require('./api/v1/get_universities').post);
 
     return router;
 };
