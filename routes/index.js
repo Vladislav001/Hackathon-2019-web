@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const swaggerJSDoc = require('swagger-jsdoc');
+const isAuthenticated = require('../middleware/is_authenticated');
+
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -28,13 +30,33 @@ const upload = multer({
     //fileFilter: fileFilter
 });
 
+module.exports = function (passport) {
 
-router.get('/', require('./example/main_example').get);
+    router.get('/', require('./auth/login').get);
+    router.get('/registration', require('./auth/registration').get);
 
-router.post('/add-example', require('./example/add_example').post);
-router.post('/delete-example/id:_id', require('./example/delete_example').post);
-router.post('/update-example/id:_id', require('./example/update_example').post);
-router.get('/example/id:_id', require('./example/detail_example').get);
+
+    router.post('/signup', passport.authenticate('signup', {
+        successRedirect: '/company-detail',
+        failureRedirect: '/',
+        failureFlash: true
+    }));
+    router.post('/login', passport.authenticate('login', {
+        successRedirect: '/company-detail',
+        failureRedirect: '/',
+        failureFlash: true
+    }));
+    router.get('/signout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+// Тестовые запросы
+// router.get('/', require('./example/main_example').get);
+// router.post('/add-example', require('./example/add_example').post);
+// router.post('/delete-example/id:_id', require('./example/delete_example').post);
+// router.post('/update-example/id:_id', require('./example/update_example').post);
+// router.get('/example/id:_id', require('./example/detail_example').get);
 
 
 ////**** API ****\\\\
@@ -109,4 +131,5 @@ router.post('/api/v1/example-upload-file', upload.single('file'), require('./api
 // websockets
 require('./api/v1/example_websocket');
 
-module.exports = router;
+    return router;
+};
