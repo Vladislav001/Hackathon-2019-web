@@ -134,5 +134,25 @@ module.exports = function (passport) {
 // websockets
     require('./api/v1/example_websocket');
 
+
+
+    /**
+     * @swagger
+     * /api/v1/get-universities:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получить список университетов города"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *        description: Example data
+     *        examples:
+     *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
+     */
+    router.post('/api/v1/get-universities', require('./api/v1/get_universities').post);
+
     return router;
 };
