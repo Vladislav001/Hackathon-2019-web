@@ -59,7 +59,7 @@ module.exports = function (passport) {
 
 
     router.get('/detail-project', require('./detail_project/card').get);
-  //  router.get('/detail_company', require('./company/datail_company').get);
+    router.get('/detail_company', require('./company/detail_company').get);
   //  router.get('/detail_project', require('./datail_project/detail_project_').get);
 
 
