@@ -6,7 +6,7 @@ const projectSchema = mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
+        type: String
     },
     employerId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -14,6 +14,9 @@ const projectSchema = mongoose.Schema({
     },
     images: {
         type: [String],
+    },
+    complited:{
+        type:Boolean
     }
 });
 

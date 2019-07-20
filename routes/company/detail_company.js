@@ -8,11 +8,30 @@ exports.get = async function (req, res) {
 
 
         res.render('company/detail_company', {
-            Model: {
-                User:req.user,
-                Projects:projects,
+            // Model: {
+            //     user:req.user,
+            //     projects:projects,
+            //
+            // }
+            Model:{
+                user:{
+                    company:'company1',
+                    site:'site1',
+                    email:'email1',
+                    password:'password1',
+                    image_avatar:'image_avatar1',
+
+                },
+                projects:[
+                    {name:'name1',
+                        description:'description1',
+                        _id:'123'
+                    }
+
+                ]
 
             }
+
         });
     } catch (err) {
         throw err;
