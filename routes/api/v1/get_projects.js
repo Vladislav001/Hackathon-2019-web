@@ -16,6 +16,7 @@ exports.post = async function (req, res) {
                     images.push(`${constants.PROTOCOL}${req.headers['host']}${projects[project].images[i]}`);
                 }
 
+                oneProject.id = projects[project]._id;
                 oneProject.project_name = projects[project].name;
                 oneProject.project_description = projects[project].description;
                 oneProject.project_foto = images[0];
@@ -32,7 +33,7 @@ exports.post = async function (req, res) {
                 }
                 oneProject.list_competitions = competitions;
                 oneProject.count_orders = 'ТУТА БУДЕТ СУЩНОСТЬ';
-                oneProject.approved_by_university = 'ТУТА БУДЕТ ЧТО ТО ЕЩЕ';
+                oneProject.approved_by_university = ["adad", "adadeq"];
                 data.push( oneProject);
             }
 
