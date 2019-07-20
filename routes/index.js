@@ -235,7 +235,34 @@ module.exports = function (passport) {
      *            list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
      *
      */
-    router.get('/api/v1/get-projects', require('./api/v1/get_projects').get);
+    router.post('/api/v1/get-projects', require('./api/v1/get_projects').post);
+
+    /**
+     * @swagger
+     * /api/v1/detail-project:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получение детальной информации о проекте"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *     - name: "id"
+     *       in: "form-data"
+     *       description: "ID проекта"
+     *       required: true
+     *       type: "string"
+     *     responses:
+     *       200:
+     *        description: Проекты успешно получены
+     *        examples:
+     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
+     *            project_fotos: ["Ссылка 1", "Ссылка 2"], list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *
+     */
+    router.post('/api/v1/detail-project', require('./api/v1/detail_project').post);
 
 
     return router;
