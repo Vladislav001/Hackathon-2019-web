@@ -62,7 +62,7 @@ module.exports = function (passport) {
     router.get('/detail-project', require('./detail_project/detail_project').get);
     router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
     router.post('/create-project', upload.any('files'), require('./detail_project/add_project').post);
-    //router.post('/change-company', isAuthenticated,upload.single('file'), require('./company/change_company').post);
+    router.post('/change-company', isAuthenticated,upload.single('file'), require('./company/change_company').post);
 
 
 ////**** API ****\\\\
@@ -271,7 +271,7 @@ module.exports = function (passport) {
      *       200:
      *        description: Проекты успешно получены
      *        examples:
-     *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
+     *           application/json: { id:13dad, company: Название компании, company_avatar: Ссылка на аватарку компании,
      *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
      *            list_competitions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
      *
@@ -304,6 +304,8 @@ module.exports = function (passport) {
      *
      */
     router.post('/api/v1/detail-project', require('./api/v1/detail_project').post);
+
+    router.post('/api/v1/student/membership-request', verifyToken, require('./api/v1/student/membership_request').post);
 
 
     return router;

@@ -30,7 +30,7 @@ function verifyToken(req, res, next) {
 
             // т.к срок действия старых токенов мог еще не истечь
             if (user.token == token) {
-                console.log('token is right');
+                res.studentId = studentId;
                 return next();
             } else {
                 errors.push(apiError.createError("2", 'Введен неверный токен, или срок действия токена истек'));
