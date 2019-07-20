@@ -38,17 +38,17 @@
         <form>
             <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
             <input type="checkbox" class="form-control" id="newProjPayment" >
-            <input type="text" class="form-control" id="newProjDescription" >
+            <input type="text" class="form-control" id="newProjDescription" placeholder="Описание нового проекта">
             <div>
                 <small class="form-text text-muted">Изображения проекта</small>
                 <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
             <small class="form-text text-muted">Технологии</small>
-            <button>Добавить технологию</button>
+            <button type="button">Добавить технологию</button>
             <div id="newProjTechnology">
 
             </div>
-
+            <button onclick="AddProj()" type="button">Добавить проект</button>
         </form>
 
 <!--                                    конец формы создания проекта-->
@@ -95,6 +95,12 @@
 <!--    </div>-->
 <!--</div>-->
 
+<script>
 
+    function AddProj(){
+    goAjaxRequest({type:'POST',data:{name:'nm1'},url:'/add-example'});
+    }
+
+</script>
 
 

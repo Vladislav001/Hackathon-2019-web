@@ -13,10 +13,11 @@ const projectSchema = mongoose.Schema({
         ref: 'Employer'
     },
     images: {
-        type: [String],
+        type: [String]
     },
     complited:{
-        type:Boolean
+        type:Boolean,
+        default: false,
     }
 });
 
