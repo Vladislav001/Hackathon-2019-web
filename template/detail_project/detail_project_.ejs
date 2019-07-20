@@ -1,0 +1,299 @@
+<% layout ('../layout/pattern') -%>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<style>
+    span > i {
+        color: white;
+    }
+    span > input {
+        background: none;
+        color: white;
+        border: 0;
+        padding: 0;
+    }
+
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button4 {
+        background-color: white;
+        color: black;
+        border: 2px solid #e7e7e7;
+    }
+
+
+    .tabs {
+        width: 100%;
+        height: 750px;
+    }
+    .tabs ul,
+    .tabs li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .tabs,
+    .tabs input[type="radio"]:checked + label {
+        position: relative;
+    }
+    .tabs li,
+    .tabs input[type="radio"] + label {
+        display: inline-block;
+    }
+    .tabs li > div,
+    .tabs input[type="radio"] {
+        position: absolute;
+    }
+    .tabs li > div,
+    .tabs input[type="radio"] + label {
+        border: solid 1px #ccc;
+    }
+    .tabs {
+        /*font: normal 11px Arial, Sans-serif;*/
+        color: #404040;
+    }
+    .tabs li {
+        vertical-align: top;
+    }
+    .tabs li:first-child {
+        margin-left: 8px;
+    }
+    .tabs li > div {
+        top: 33px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 8px;
+        overflow: auto;
+        background: #fff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .tabs input[type="radio"] + label {
+        margin: 0 2px 0 0;
+        padding: 0 18px;
+        line-height: 32px;
+        background: #f1f1f1;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+        cursor: pointer;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    .tabs input[type="radio"]:checked + label {
+        z-index: 1;
+        background: #fff;
+        border-bottom-color: #fff;
+        cursor: default;
+    }
+    .tabs input[type="radio"] {
+        opacity: 0;
+    }
+    .tabs input[type="radio"] ~ div {
+        display: none;
+    }
+    .tabs input[type="radio"]:checked:not(:disabled) ~ div {
+        display: block;
+    }
+    .tabs input[type="radio"]:disabled + label {
+        opacity: .5;
+        cursor: no-drop;
+    }
+</style>
+
+
+
+<!--<div class="fixed-top" style="background-color: black">-->
+<div class="container">
+    <div class="row">
+        <div class="col text-center" style="color: black;">
+            <h1>Карточка проекта № 1</h1>
+        </div>
+        <div class="col text-center">
+            <a class="nav-link active" href="#">
+                <h1>ItRocket</h1></a>
+        </div>
+    </div>
+</div>
+<!--</div>-->
+
+<div class="container" style="padding-top: 66px">
+    <div class="row">
+        <div class="card text-center">
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Описание проекта</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img class="card-img-top" src="https://million-wallpapers.ru/wallpapers/6/8/437821415960923.jpg" alt="Card image cap">
+                        </div>
+                        <div class="col text-center">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Требуемые навыки</h5>
+                    </div>
+                    <div class="col text-center">
+                        <% for (var i=0; i< 15; i++) { %>
+                        <button class="button button4">Навык № <%=i+1%> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <% } %>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Введите навык" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Добавить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Заявки</h5>
+                    </div>
+                    <div class="col text-center">
+                        <div class="tabs">
+                            <ul>
+                                <li>
+                                    <input type="radio" name="tabs-0" checked="checked" id="tabs-0-0" />
+                                    <label for="tabs-0-0">Поданные заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="/example/id">Ссылка</a></td>
+                                                <td>
+                                                    <form id="edit_<%=i+1%>">
+                                                        <button class="btn btn-success" value="/delete-example/id"
+                                                                onclick="return successDelete ()">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-danger" value="/delete-example/id"
+                                                                onclick="return confirmDelete()">Отклонить <i class="fa fa-times"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-1" />
+                                    <label for="tabs-0-1">Принятые заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="/example/id">Ссылка</a></td>
+                                                <td>
+                                                    <form id="edit_<%=i+1%>">
+                                                        <button class="btn btn-danger" value="/delete-example/id"
+                                                                onclick="return confirmDelete()">Отклонить <i class="fa fa-times"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-2" />
+                                    <label for="tabs-0-2">Отклонённые заявки</label>
+                                    <div>
+                                        <table class="table">
+                                            <tr><th>Ф.И.О.</th><th></th><th></th></tr>
+                                            <% for (i=0; i< 10; i++) { %>
+                                            <tr>
+                                                <td>Студент № <%=i+1%></td>
+                                                <td><a href="/example/id">Ссылка</a></td>
+                                                <td>
+                                                    <form id="edit_<%=i+1%>">
+                                                        <button class="btn btn-success" value="/delete-example/id"
+                                                                onclick="return successDelete ()">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="radio" name="tabs-0" id="tabs-0-3" disabled="disabled" />
+                                    <label for="tabs-0-3">Вкладка 4</label>
+                                    <div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-header">
+                        <h5 class="card-title">Закрытие проекта</h5>
+                    </div>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-success" value="id"
+                                        onclick="">Подтвердить <i class="fa fa-check" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger" value="id"
+                                        onclick="">Закрыть <i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function onClickfg(){
+        goAjaxRequest({type:'GET',data:{name:'nm1'},url:'/add-example',funcSuccess:function(xhr, status, jqXHR){
+
+            }
+
+
+        });
+    }
+
+</script>
+
