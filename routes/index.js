@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const swaggerJSDoc = require('swagger-jsdoc');
 const isAuthenticated = require('../middleware/is_authenticated');
+const verifyToken = require('../middleware/verify_token');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -103,7 +104,7 @@ module.exports = function (passport) {
      *        examples:
      *           application/json: { "_id": "5d1bab42042e52e0444e81af", "name": "some" }
      */
-    router.post('/api/v1/example', require('./api/v1/example').post);
+    router.post('/api/v1/example', verifyToken, require('./api/v1/example').post);
 
     /**
      * @swagger
@@ -256,6 +257,7 @@ module.exports = function (passport) {
      *
      */
     router.post('/api/v1/student/login', require('./api/v1/student/login').post);
+
 
     return router;
 };
