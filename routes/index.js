@@ -28,7 +28,6 @@ const upload = multer({
     //fileFilter: fileFilter
 });
 
-router.get('/detail-project', require('./detail_project/cards').get);
 router.get('/', require('./example/main_example').get);
 
 router.post('/add-example', require('./example/add_example').post);
