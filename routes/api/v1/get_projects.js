@@ -1,6 +1,7 @@
 const Project = require('../../../models/project');
 const Technology = require('../../../models/technology');
 const Employer = require('../../../models/employer');
+const constants = require('../../../functions/constants');
 
 exports.post = async function (req, res) {
     try {
@@ -12,7 +13,7 @@ exports.post = async function (req, res) {
                 let oneProject = {};
                 let images = [];
                 for (let i = 0; i < projects[project].images.length; i++) {
-                    images.push(`${req.headers['host']}${projects[project].images[i]}`);
+                    images.push(`${constants.PROTOCOL}${req.headers['host']}${projects[project].images[i]}`);
                 }
 
                 oneProject.project_name = projects[project].name;
@@ -21,7 +22,7 @@ exports.post = async function (req, res) {
 
                 let employer = await Employer.findOne({_id:  projects[project].employerId});
                 oneProject.company = employer.company;
-                oneProject.company_avatar = employer.image_avatar;
+                oneProject.company_avatar = `${constants.PROTOCOL}${req.headers['host']}${employer.image_avatar}`;
 
                 let technologies =  await Technology.find({projectId:  projects[project]._id});
                 let competitions = [];
