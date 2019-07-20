@@ -62,6 +62,7 @@ module.exports = function (passport) {
     router.get('/detail-project', require('./detail_project/detail_project').get);
     router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
     router.post('/create-project', upload.any('files'), require('./detail_project/add_project').post);
+    //router.post('/change-company', isAuthenticated,upload.single('file'), require('./company/change_company').post);
 
 
 ////**** API ****\\\\
@@ -272,7 +273,7 @@ module.exports = function (passport) {
      *        examples:
      *           application/json: { company: Название компании, company_avatar: Ссылка на аватарку компании,
      *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
-     *            list_competentions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *            list_competitions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
      *
      */
     router.post('/api/v1/get-projects', require('./api/v1/get_projects').post);
