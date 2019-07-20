@@ -346,5 +346,23 @@ module.exports = function (passport) {
     router.post('/api/v1/student/membership-request', verifyToken, require('./api/v1/student/membership_request').post);
 
 
+    /**
+     * @swagger
+     * /api/v1/get-popular-competencies:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получить навыки по популярности"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *        description: Example data
+     *        examples:
+     *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
+     */
+    router.post('/api/v1/get-popular-competencies', require('./api/v1/get_popular_competencies').post);
+
     return router;
 };
