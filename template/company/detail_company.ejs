@@ -18,7 +18,7 @@
                 <label for="phoneNumberOrganizzation">Телефон организации</label>
                 <input type="number" class="form-control" id="phoneNumberOrganizzation" placeholder="Номер организации" value="<%= Model.user.phone_number%>">
 
-                <label for="phoneNumberOrganizzation">Почта организации</label>
+                <label for="emailCompany">Почта организации</label>
                 <input type="email" class="form-control" id="emailCompany" placeholder="Почта организации" value="<%= Model.user.email%>">
 
                 <label for="oldPassorwCompany">Старый пароль</label>
@@ -37,6 +37,7 @@
                 </div>
 
             </div>
+            <button onclick="changeCompany()" type="button">Сохранить изменения компании</button>
         </form>
 
                     <small class="form-text text-muted">Создание проекта</small>
@@ -106,6 +107,27 @@
     var maxidTechnology=0;
     function addTechnology(){
         $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+
+    }
+
+    function changeCompany(){
+        var data = new FormData();
+        var massFiles1 = document.getElementById('upLoadImageCompany').files;
+
+        $.each(massFiles1, function (key, value) {
+            data.append('file', value);//name обязательно такое же как и в upload.single('file')
+        });
+
+        data.append('name', document.getElementById('nameOrganizzation').value);
+        data.append('site', document.getElementById('linkCompany').value);
+        data.append('email', document.getElementById('emailCompany').value);
+        data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
+
+
+        goAjaxRequest({type:'POST',data:data,url:'/change-company'},true);
+
+
+
 
     }
 
