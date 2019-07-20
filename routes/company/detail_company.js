@@ -1,12 +1,19 @@
-const Example = require('../../models/project');
+const Empl = require('../../models/employer');
+const Project = require('../../models/project');
 
 exports.get = async function (req, res) {
     try {
-        //let example = await Example.findOne({ _id: req.params._id });
+        //let company= await Empl.findOne({ _id: req.user._id });
+        let projects= await Project.find({employerId:res.user._id});;
 
-        // res.render('example/detail_example', {
-        //     example: example
-        // });
+
+        res.render('company/detail_company', {
+            Model: {
+                User:req.user,
+                Projects:projects,
+
+            }
+        });
     } catch (err) {
         throw err;
     }
