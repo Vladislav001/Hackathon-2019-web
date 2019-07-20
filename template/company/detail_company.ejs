@@ -32,43 +32,50 @@
 
                 <div>
                     <label for="upLoadImageCompany">Изменить Изображение организации</label>
-                    <input class="form-control btn btn-default" id="upLoadImageCompany" type="file"  name="file" />
+                    <input class="form-control-file" id="upLoadImageCompany" type="file"  name="file" />
 
                 </div>
 
             </div>
-            <button onclick="changeCompany()" type="button">Сохранить изменения компании</button>
+            <button class="btn btn-primary" onclick="changeCompany()" type="button">Сохранить изменения компании</button>
         </form>
-
+<div class="p-3"></div>
                     <small class="form-text text-muted">Создание проекта</small>
+<!--            border border-success-->
+            <div class="jumbotron">
         <form>
             <label for="newProjName">Название нового проекта</label>
             <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
-
+<div>
+    <div>
             <label for="newProjPayment">Оплачивается</label>
-            <input type="checkbox" class="form-check-input" id="newProjPayment" >
+        <!--        form-check-input-->
+        <input type="checkbox" class="" id="newProjPayment" >
+    </div>
 
+</div>
             <label for="newProjDescription">Описание нового проекта</label>
             <input type="text" class="form-control" id="newProjDescription" placeholder="Описание нового проекта">
 
             <div>
                 <small class="form-text text-muted">Изображения проекта</small>
-                <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
+                <input class="form-control-file" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
             <small class="form-text text-muted">Технологии</small>
-            <button onclick="addTechnology()" type="button">Добавить технологию</button>
+            <button class="btn btn-primary" onclick="addTechnology()" type="button">Добавить технологию</button>
             <!--                                    конец формы создания проекта-->
             <div id="newProjTechnology">
 
             </div>
-            <button onclick="AddProj()" type="button">Добавить проект</button>
+            <div class="p-3"></div>
+            <button  class="btn btn-primary" onclick="AddProj()" type="button">Добавить проект</button>
         </form>
-
+            </div>
 <!--                                    конец формы создания проекта-->
 
 
 
-                    <small class="form-text text-muted">Существующие проекты</small>
+                    <h1 class="form-text text-muted">Существующие проекты</h1>
 
         <div>
 <!--            <div class="card-columns">-->
@@ -118,7 +125,7 @@
 
     var maxidTechnology=0;
     function addTechnology(){
-        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+        $('#newProjTechnology').append('<input class="form-control" id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
 
     }
 
