@@ -221,9 +221,9 @@
                                                     <td>
                                                         <form id="edit_<%=i+1%>">
                                                             <button class="btn btn-success" value="/delete-example/id" id="accept_<%=students[i]._id%>"
-                                                                    onclick="return successDelete ()">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                    onclick="acceptStudent('<%=students[i]._id.toString()%>')">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
                                                             <button class="btn btn-danger" value="/delete-example/id" id="delete_<%=students[i]._id%>"
-                                                                    onclick="return confirmDelete()">Отклонить <i class="fa fa-times"></i></button>
+                                                                    onclick="declineStudent('<%=students[i]._id.toString()%>')">Отклонить <i class="fa fa-times"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -246,7 +246,7 @@
                                                 <td>
                                                     <form id="edit_<%=i+1%>">
                                                         <button class="btn btn-danger" value="/delete-example/id" id="delete_<%=students[i]._id%>"
-                                                                onclick="return confirmDelete()">Отклонить <i class="fa fa-times"></i></button>
+                                                                onclick="declineStudent('<%=students[i]._id.toString()%>')">Отклонить <i class="fa fa-times"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -269,7 +269,7 @@
                                                 <td>
                                                     <form id="edit_<%=i+1%>">
                                                         <button class="btn btn-success" value="/delete-example/id" id="accept_<%=students[i]._id%>"
-                                                                onclick="return successDelete ()">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
+                                                                onclick="acceptStudent('<%=students[i]._id.toString()%>')">Принять <i class="fa fa-check" aria-hidden="true"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -333,6 +333,29 @@
 
             }});
     }
+
+
+    function acceptStudent(studentid){
+        var data = {};
+        data.studentId=studentid;
+        data.projectId='<%=project._id.toString()%>';
+
+        goAjaxRequest({type:'POST',data:data,url:'/accept-student',funcComplete:function(){
+                location.reload(true)
+
+            }});
+    }
+   function declineStudent(studentid){
+       var data = {};
+       data.studentId=studentid;
+       data.projectId='<%=project._id.toString()%>';
+
+       goAjaxRequest({type:'POST',data:data,url:'/decline-student',funcComplete:function(){
+               location.reload(true)
+
+           }});
+   }
+
 
     // function onClickfg(){
     //     goAjaxRequest({type:'GET',data:{name:'nm1'},url:'/add-example',funcSuccess:function(xhr, status, jqXHR){
