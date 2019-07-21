@@ -1,5 +1,5 @@
-function confirmDelete() {
-    if (confirm("Вы подтверждаете удаление?")) {
+function confirmDelete(message) {
+    if (confirm(String(message))) {
 
       $.ajax({
         type: 'POST',

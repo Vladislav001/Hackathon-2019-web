@@ -18,7 +18,7 @@
                 <th scope="row"><%=i+1%></th>
                 <td><a href="/example/id<%=examples[i].id%>"><%=examples[i].name%></a></td>
                 <td><button class="btn btn-danger" value="/delete-example/id<%=examples[i].id%>"
-                            onclick="return confirmDelete()">Удалить</button></td>
+                            onclick="return confirmDelete('Вы подтверждаете удаление?')">Удалить</button></td>
                 </tbody>
                 <% } %>
             </table>
