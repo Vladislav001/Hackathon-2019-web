@@ -175,10 +175,10 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-control-file" id="upLoadImages" type="file" multiple name="file" />
+<!--                    <input class="form-control-file" id="upLoadImages" type="file" multiple name="file" />-->
                     <div class="form-group form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" <%if(project.payment){%>checked<%}%>> Оплачиваемая стажировка
+                            <input id="payment_" class="form-check-input" type="checkbox" <%if(project.payment){%>checked<%}%>> Оплачиваемая стажировка
                         </label>
                     </div>
                 </div>
@@ -327,26 +327,30 @@
 <script>
 
     function changeDescription(){//сохраняет всю сущность
-console.log('<%=project._id%>')
-            var data = new FormData();
-            var massFiles1 = document.getElementById('upLoadImages').files;
 
-            $.each(massFiles1, function (key, value) {
-                data.append('file', value);//name обязательно такое же как и в upload.single('file')
-            });
+            <!--var data = new FormData();-->
+            <!--var massFiles1 = document.getElementById('upLoadImages').files;-->
 
-            data.append('name', document.getElementById('name_of_project').value);
-            data.append('description', document.getElementById('description_for_project').value);
-            data.append('projectId', '<%=project._id%>');
-           // data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
+            <!--$.each(massFiles1, function (key, value) {-->
+            <!--data.append('file', value);-->
+            <!--});-->
+
+            <!--data.append('name', document.getElementById('name_of_project').value);-->
+            <!--data.append('description', document.getElementById('description_for_project').value);-->
+            <!--data.append('projectId', '<%=project._id%>');-->
+
+
+
+            // data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
 
 
 
         let data_={
             name: document.getElementById('name_of_project').value,
             description:document.getElementById('description_for_project').value,
-            projectId:'<%= project._id %>'
-
+            projectId:'<%= project._id %>',
+           // payment:($("#payment_").attr("checked") == 'checked')
+            payment:($("#payment_").prop("checked"))
 
         };
 

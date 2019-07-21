@@ -7,6 +7,7 @@ exports.post = async function (req, res) {
         console.log(req.body);
         proj.name=req.body.name;
         proj.description=req.body.description;
+        proj.payment=req.body.payment;
         //
         // let updateProject={
         //     description:req.body.description,

@@ -64,6 +64,10 @@ function goAjaxRequest(obj,fileLoad) {
         },
         dataType: obj.dataType//'html'
     };
+    // if(obj.dataType){
+    //     ajaxObj.dataType=obj.dataType
+    // }
+
     if(fileLoad){
         //processData: false, // Не обрабатываем файлы
         //contentType: false,
