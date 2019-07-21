@@ -19,9 +19,17 @@ const projectSchema = mongoose.Schema({
         type:Boolean,
         default: false,
     },
+    closed:{
+        type:Boolean,
+        default: false,
+    },
     payment:{
         type:Boolean,
         default: false,
+    },
+    endDescription:{
+        type:String,
+        default: '',
     }
 });
 
