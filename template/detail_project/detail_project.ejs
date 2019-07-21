@@ -440,6 +440,7 @@
 
 
     function closeProject(){
+        confirmDelete('Закрыть проект?');
         var data = {};
         data.endDescription=document.getElementById('comment').value;
         data.projectId='<%=project._id.toString()%>';
@@ -451,6 +452,7 @@
     }
 
     function compliteProject(){
+        confirmDelete('Подтвердить проект?');
         var data = {};
         data.endDescription=document.getElementById('comment').value;
         data.projectId='<%=project._id.toString()%>';
