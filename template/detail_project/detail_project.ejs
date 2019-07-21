@@ -329,7 +329,7 @@
 <script>
 
     function changeDescription(){//сохраняет всю сущность
-
+console.log('<%=project._id%>')
             var data = new FormData();
             var massFiles1 = document.getElementById('upLoadImages').files;
 
@@ -339,14 +339,37 @@
 
             data.append('name', document.getElementById('name_of_project').value);
             data.append('description', document.getElementById('description_for_project').value);
-            data.append('projectId', '<%=project._id.toString()%>');
+            data.append('projectId', '<%=project._id%>');
            // data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
 
 
-        goAjaxRequest({type:'POST',data:data,url:'/change-project',funcComplete:function(){
-                location.reload(true);
 
-            }},true);
+        let data_={
+            name: document.getElementById('name_of_project').value,
+            description:document.getElementById('description_for_project').value,
+            projectId:'<%= project._id %>'
+
+
+        };
+
+        // goAjaxRequest({type:'POST',data:data_,url:'/change-project',funcComplete:function(){
+        //         location.reload(true);
+        //
+        //     }},true);
+
+            $.ajax({
+                type: 'POST',
+                url: '/change-project',
+                //dataType: 'json',
+                data: data_,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    location.reload();
+                }
+            });
+
     }
 
     function acceptStudent(studentid){
