@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
         <% if(Model.user.image_avatar){%>
-        <img src="<%= Model.user.image_avatar%>" alt="Image">
+        <img style="height:200px;" class="img-fluid w-100" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
         <% }else{%>
 
         <img src="/uploads/test_file.jpg" alt="Image">
@@ -32,53 +32,72 @@
 
                 <div>
                     <label for="upLoadImageCompany">Изменить Изображение организации</label>
-                    <input class="form-control btn btn-default" id="upLoadImageCompany" type="file"  name="file" />
+                    <input class="form-control-file" id="upLoadImageCompany" type="file"  name="file" />
 
                 </div>
 
             </div>
-            <button onclick="changeCompany()" type="button">Сохранить изменения компании</button>
+            <button class="btn btn-primary" onclick="changeCompany()" type="button">Сохранить изменения компании</button>
         </form>
-
+<div class="p-3"></div>
                     <small class="form-text text-muted">Создание проекта</small>
+<!--            border border-success-->
+            <div class="jumbotron">
         <form>
+            <label for="newProjName">Название нового проекта</label>
             <input type="text" class="form-control" id="newProjName" placeholder="Название нового проекта">
-            <input type="checkbox" class="form-control" id="newProjPayment" >
+<div>
+    <div>
+            <label for="newProjPayment">Оплачивается</label>
+        <!--        form-check-input-->
+        <input type="checkbox" class="" id="newProjPayment" >
+    </div>
+
+</div>
+            <label for="newProjDescription">Описание нового проекта</label>
             <input type="text" class="form-control" id="newProjDescription" placeholder="Описание нового проекта">
+
             <div>
                 <small class="form-text text-muted">Изображения проекта</small>
-                <input class="form-control btn btn-default" id="upLoadImagesNewProject" type="file" multiple name="file" />
+                <input class="form-control-file" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
             <small class="form-text text-muted">Технологии</small>
-            <button onclick="addTechnology()" type="button">Добавить технологию</button>
+            <button class="btn btn-primary" onclick="addTechnology()" type="button">Добавить технологию</button>
             <!--                                    конец формы создания проекта-->
             <div id="newProjTechnology">
 
             </div>
-            <button onclick="AddProj()" type="button">Добавить проект</button>
+            <div class="p-3"></div>
+            <button  class="btn btn-primary" onclick="AddProj()" type="button">Добавить проект</button>
         </form>
-
+            </div>
 <!--                                    конец формы создания проекта-->
 
 
 
-                    <small class="form-text text-muted">Существующие проекты</small>
-        <small class="form-text text-muted">Существующие проекты</small>
+                    <h1 class="form-text text-muted">Существующие проекты</h1>
+
         <div>
-            <% for(var i=0;i<Model.projects.length;++i){ %>
-            <div class="card" style="width: 18rem;">
-                <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
-                <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
-                <% } %>
+<!--            <div class="card-columns">-->
+<div class="row">
+                <% for(var i=0;i<Model.projects.length;++i){ %>
+                    <div class="col-md-5 col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
+                        <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
+                        <% } %>
 
-                <div class="card-body">
-                    <h5 class="card-title"><%=Model.projects[i].name%></h5>
-                    <p class="card-text"><%=Model.projects[i].description%></p>
-                    <a href="<%=Model.projects[i]._id%>" class="btn btn-primary">Страница проекта</a>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=Model.projects[i].name%></h5>
+                            <p class="card-text"><%=Model.projects[i].description%></p>
+                            <a href="/detail-project/id<%=Model.projects[i]._id.toString()%>" class="btn btn-primary">Страница проекта</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <% } %>
+                <% } %>
+            </div>
+<!--            </div>-->
 
         </div>
                 </div>
@@ -106,7 +125,7 @@
 
     var maxidTechnology=0;
     function addTechnology(){
-        $('#newProjTechnology').append('<input id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
+        $('#newProjTechnology').append('<input class="form-control" id="newTechnology_'+maxidTechnology++ +'" type="text" placeholder="Введите навык">');
 
     }
 

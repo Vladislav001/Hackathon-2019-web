@@ -1,12 +1,38 @@
 const Project = require('../../../models/project');
 const Technology = require('../../../models/technology');
 const Employer = require('../../../models/employer');
+const projStudentSchema = require('../../../models/project_student');
+const apiError = require('../../../functions/apierror');
 const constants = require('../../../functions/constants');
+const jwt = require('jsonwebtoken');
 
 exports.post = async function (req, res) {
     try {
+        let token = req.headers['x-access-token'];
+        let projectsIDOfStudent = [];
         let data = [];
         let projects = await Project.find({});
+
+        if (token) {
+            let errors = [];
+            try {
+                let tokenExistAndRight = jwt.verify(token, constants.SECRET_STRING);
+                let projectsOrdered = await projStudentSchema.find({studentId: tokenExistAndRight.id});
+
+                for (let projectOrdered = 0; projectOrdered < projectsOrdered.length; projectOrdered++)
+                {
+                    projectsIDOfStudent.push(String(projectsOrdered[projectOrdered].projectId));
+                }
+
+
+            } catch (errToken) {
+                errors.push(apiError.createError("1", 'Введен неверный токен, или срок действия токена истек'));
+                return res.status(403).json({
+                    errors
+                });
+            }
+        }
+
 
             for (let project = 0; project < projects.length; project++ )
             {
@@ -32,9 +58,17 @@ exports.post = async function (req, res) {
                     competitions.push(technologies[technology].name);
                 }
                 oneProject.list_competitions = competitions;
-                oneProject.count_orders = 33;
+
+                let countMemberships = await projStudentSchema.countDocuments({projectId: projects[project]._id});
+                oneProject.count_orders = countMemberships;
                 oneProject.approved_by_university = ["adad", "adadeq"];
-                data.push( oneProject);
+                oneProject.isOrdered = false;
+
+                if(projectsIDOfStudent.indexOf(String(projects[project]._id)) != -1)
+                {
+                    oneProject.isOrdered = true;
+                }
+                data.push(oneProject);
             }
 
 
