@@ -1,14 +1,30 @@
 <% layout ('../layout/pattern') -%>
 
-<div class="row">
+<style>
+    .card-img-top {
+        max-height: 200px;
+    }
+    .card{
+       margin-bottom: 10px;
+    }
+</style>
+
+<div class="row" style="margin-top: 20px">
     <div class="col">
+    <div style="height:200px; margin-bottom: 5px">
+
         <% if(Model.user.image_avatar){%>
-        <img style="height:200px;" class="img-fluid w-100" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
+        <img style="height:200px; margin-bottom: 5px" class="rounded float-left" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
         <% }else{%>
 
-        <img src="/uploads/test_file.jpg" alt="Image">
+        <img src="/uploads/test_file.jpg" class="rounded float-left"  alt="Image" >
         <% }%>
-        <form>
+
+    </div>
+        <label for="upLoadImageCompany">Изменить изображение организации</label>
+        <input class="form-control-file" id="upLoadImageCompany" type="file"  name="file" />
+        <form style="margin-top: 20px">
+
             <div class="form-group">
 
 
@@ -30,17 +46,11 @@
                 <label for="linkCompany">Ссылка на сайт организации</label>
                 <input type="string" class="form-control" id="linkCompany" placeholder="Ссылка на сайт организации" value="<%= Model.user.site%>">
 
-                <div>
-                    <label for="upLoadImageCompany">Изменить Изображение организации</label>
-                    <input class="form-control-file" id="upLoadImageCompany" type="file"  name="file" />
-
-                </div>
-
             </div>
             <button class="btn btn-primary" onclick="changeCompany()" type="button">Сохранить изменения компании</button>
         </form>
 <div class="p-3"></div>
-                    <small class="form-text text-muted">Создание проекта</small>
+                    <h1 class="form-text text-center">Создание проекта</h1>
 <!--            border border-success-->
             <div class="jumbotron">
         <form>
@@ -61,8 +71,8 @@
                 <small class="form-text text-muted">Изображения проекта</small>
                 <input class="form-control-file" id="upLoadImagesNewProject" type="file" multiple name="file" />
             </div>
-            <small class="form-text text-muted">Технологии</small>
-            <button class="btn btn-primary" onclick="addTechnology()" type="button">Добавить технологию</button>
+            <small class="form-text text-muted">Навыки</small>
+            <button class="btn btn-primary" onclick="addTechnology()" type="button">Добавить навык</button>
             <!--                                    конец формы создания проекта-->
             <div id="newProjTechnology">
 
@@ -75,7 +85,7 @@
 
 
 
-                    <h1 class="form-text text-muted">Существующие проекты</h1>
+                    <h1 class="form-text text-center">Существующие проекты</h1>
 
         <div>
 <!--            <div class="card-columns">-->

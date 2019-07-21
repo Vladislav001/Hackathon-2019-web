@@ -62,11 +62,12 @@ exports.post = async function (req, res) {
                 let countMemberships = await projStudentSchema.countDocuments({projectId: projects[project]._id});
                 oneProject.count_orders = countMemberships;
                 oneProject.approved_by_university = ["adad", "adadeq"];
-                oneProject.isOrdered = false;
 
                 if(projectsIDOfStudent.indexOf(String(projects[project]._id)) != -1)
                 {
-                    oneProject.isOrdered = true;
+                    let record = await projStudentSchema.findOne({projectId: projects[project]._id});
+
+                    oneProject.isOrdered = record.status;
                 }
                 data.push(oneProject);
             }
