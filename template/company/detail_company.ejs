@@ -1,14 +1,26 @@
 <% layout ('../layout/pattern') -%>
 
+<style>
+    .card-img-top {
+        max-height: 200px;
+    }
+    .card{
+       margin-bottom: 10px;
+    }
+</style>
+
 <div class="row">
     <div class="col">
+    <div style="height:200px; margin-bottom: 5px">
         <% if(Model.user.image_avatar){%>
-        <img style="height:200px;" class="img-fluid w-100" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
+        <img style="height:200px; margin-bottom: 5px" class="rounded float-left" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
         <% }else{%>
 
-        <img src="/uploads/test_file.jpg" alt="Image">
+        <img src="/uploads/test_file.jpg" class="rounded float-left"  alt="Image" >
         <% }%>
+    </div>
         <form>
+
             <div class="form-group">
 
 
@@ -40,7 +52,7 @@
             <button class="btn btn-primary" onclick="changeCompany()" type="button">Сохранить изменения компании</button>
         </form>
 <div class="p-3"></div>
-                    <small class="form-text text-muted">Создание проекта</small>
+                    <h1 class="form-text text-center">Создание проекта</h1>
 <!--            border border-success-->
             <div class="jumbotron">
         <form>
@@ -75,7 +87,7 @@
 
 
 
-                    <h1 class="form-text text-muted">Существующие проекты</h1>
+                    <h1 class="form-text text-center">Существующие проекты</h1>
 
         <div>
 <!--            <div class="card-columns">-->
