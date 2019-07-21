@@ -59,10 +59,13 @@ module.exports = function (passport) {
     });
 
 
-    router.get('/detail-project/id:_id', require('./detail_project/detail_project').get);
+    router.get('/detail-project/id:_id', isAuthenticated, require('./detail_project/detail_project').get);
     router.get('/detail-company', isAuthenticated, require('./company/detail_company').get);
-    router.post('/create-project', upload.any('files'), require('./detail_project/add_project').post);
+    router.post('/create-project', isAuthenticated, upload.any('files'), require('./detail_project/add_project').post);
     router.post('/change-company', isAuthenticated,upload.single('file'), require('./company/change_company').post);
+    router.post('/change-project', isAuthenticated, require('./detail_project/change_project').post);
+    router.post('/accept-student', isAuthenticated, require('./detail_project/accept_student').post);
+    router.post('/decline-student', isAuthenticated, require('./detail_project/decline_student').post);
 
 
 ////**** API ****\\\\
