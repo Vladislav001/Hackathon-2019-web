@@ -189,14 +189,14 @@
                     </div>
                     <div class="col text-center">
                         <% for (var i=0; i< technology.length; i++) { %>
-                        <button class="button button4" id="technology_project.images"><%=technology[i].name%> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button class="button button4" id="technology_project.images" onclick="deleteTechnology('<%=technology[i]._id.toString()%>')"><%=technology[i].name%> <i class="fa fa-trash" aria-hidden="true"></i></button>
                         <% } %>
                     </div>
                     <div class="card-footer text-muted">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Введите навык" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" id="add_technique" placeholder="Введите навык" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Добавить</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="addTechnology()" id="button-addon2">Добавить</button>
                             </div>
                         </div>
                     </div>
@@ -380,6 +380,29 @@
 
             }});
     }
+
+    function addTechnology(){
+        var data = {};
+        data.name=document.getElementById('add_technique').value;
+        data.projectId='<%=project._id.toString()%>';
+
+        goAjaxRequest({type:'POST',data:data,url:'/add-technique',funcComplete:function(){
+                location.reload(true)
+
+            }});
+    }
+
+    function deleteTechnology(technologyId){
+        var data = {};
+        data.technologyId=technologyId;
+
+        goAjaxRequest({type:'POST',data:data,url:'/delete-technology',funcComplete:function(){
+                location.reload(true)
+
+            }});
+    }
+
+
 
     // function onClickfg(){
     //     goAjaxRequest({type:'GET',data:{name:'nm1'},url:'/add-example',funcSuccess:function(xhr, status, jqXHR){
