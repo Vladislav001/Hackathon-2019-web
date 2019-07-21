@@ -70,7 +70,8 @@ module.exports = function (passport) {
     router.post('/delete-image-project', isAuthenticated, require('./detail_project/delete_image').post);
     router.post('/complite-project', isAuthenticated, require('./detail_project/complite_project').post);
     router.post('/close-project', isAuthenticated, require('./detail_project/close_project').post);
-    router.post('/add-technology', isAuthenticated, require('./detail_project/add_technology').post);
+    router.post('/add-technology', isAuthenticated, require('./detail_pr oject/add_technology').post);
+    router.post('/delete-technology', isAuthenticated, require('./detail_project/delete_technology').post);
 
 
 ////**** API ****\\\\
