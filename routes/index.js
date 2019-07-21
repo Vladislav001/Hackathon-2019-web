@@ -67,6 +67,11 @@ module.exports = function (passport) {
     router.post('/accept-student', isAuthenticated, require('./detail_project/accept_student').post);
     router.post('/decline-student', isAuthenticated, require('./detail_project/decline_student').post);
     router.get('/detail-student/id:_id', isAuthenticated, require('./detail_student').get);
+    router.post('/delete-image-project', isAuthenticated, require('./detail_project/delete_image').post);
+    router.post('/complite-project', isAuthenticated, require('./detail_project/complite_project').post);
+    router.post('/close-project', isAuthenticated, require('./detail_project/close_project').post);
+    router.post('/add-technology', isAuthenticated, require('./detail_project/add_technology').post);
+
 
 ////**** API ****\\\\
 
