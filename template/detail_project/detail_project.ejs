@@ -215,7 +215,7 @@
                                                 <%if(project_student[i].status==0){%>
                                                 <tr>
                                                     <td><%=students[i].last_name%> <%=students[i].first_name%> <%=students[i].second_name%></td>
-                                                    <td><a href="" id=<%=students[i]._id%>>Ссылка</a></td>
+                                                    <td><a href="/detail-student/id<%=students[i]._id%>">Ссылка</a></td>
                                                     <td>
                                                         <form id="edit_<%=i+1%>">
                                                             <button class="btn btn-success" value="/delete-example/id" id="accept_<%=students[i]._id%>"
@@ -240,7 +240,7 @@
                                             <%if(project_student[i].status==1){%>
                                             <tr>
                                                 <td><%=students[i].last_name%> <%=students[i].first_name%> <%=students[i].second_name%></td>
-                                                <td><a href="" id=<%=students[i]._id%>>Ссылка</a></td>
+                                                <td><a href="/detail-student/id<%=students[i]._id%>">Ссылка</a></td>
                                                 <td>
                                                     <form id="edit_<%=i+1%>">
                                                         <button class="btn btn-danger" value="/delete-example/id" id="delete_<%=students[i]._id%>"
@@ -263,7 +263,7 @@
                                             <%if(project_student[i].status==2){%>
                                             <tr>
                                                 <td><%=students[i].last_name%> <%=students[i].first_name%> <%=students[i].second_name%></td>
-                                                <td><a href="" id=<%=students[i]._id%>>Ссылка</a></td>
+                                                <td><a href="/detail-student/id<%=students[i]._id%>">Ссылка</a></td>
                                                 <td>
                                                     <form id="edit_<%=i+1%>">
                                                         <button class="btn btn-success" value="/delete-example/id" id="accept_<%=students[i]._id%>"

@@ -66,7 +66,7 @@ module.exports = function (passport) {
     router.post('/change-project', isAuthenticated, require('./detail_project/change_project').post);
     router.post('/accept-student', isAuthenticated, require('./detail_project/accept_student').post);
     router.post('/decline-student', isAuthenticated, require('./detail_project/decline_student').post);
-
+    router.get('/detail-student/id:_id', isAuthenticated, require('./detail_student').get);
 
 ////**** API ****\\\\
 
