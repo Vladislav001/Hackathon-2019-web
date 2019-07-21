@@ -9,7 +9,7 @@ exports.post = async function (req, res) {
 
 
         //let proj =await Project.findOne({_id:req.body.projectId,studentId:req.body.studentId});
-        let proj =await Project.findOne({_id: req.body.project_id} );
+        let proj =await Project.findOne({_id: req.body.projectId} );
 let indexDel=proj.images.indexOf(req.body.delImagePath);
 
         if (indexDel> -1) {
