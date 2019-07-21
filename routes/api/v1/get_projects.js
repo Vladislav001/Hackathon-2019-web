@@ -11,7 +11,7 @@ exports.post = async function (req, res) {
         let token = req.headers['x-access-token'];
         let projectsIDOfStudent = [];
         let data = [];
-        let projects = await Project.find({});
+        let projects = await Project.find({complited: false, closed:false});
 
         if (token) {
             let errors = [];
@@ -39,7 +39,7 @@ exports.post = async function (req, res) {
                 let oneProject = {};
                 let images = [];
                 for (let i = 0; i < projects[project].images.length; i++) {
-                    images.push(`${constants.PROTOCOL}${req.headers['host']}${projects[project].images[i]}`);
+                    images.push(`${constants.PROTOCOL}${req.headers['host']}/${projects[project].images[i]}`);
                 }
 
                 oneProject.id = projects[project]._id;

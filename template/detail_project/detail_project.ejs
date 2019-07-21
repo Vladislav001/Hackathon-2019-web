@@ -113,14 +113,7 @@
 </style>
 
 <!--<div class="fixed-top" style="background-color: black">-->
-<div class="container">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="name_of_project">Проект</label>
-        </div>
-        <input type="text" class="form-control" id="name_of_project" value="<%=project.name%>" aria-label="Recipient's username" aria-describedby="button-addon2">
-    </div>
-</div>
+
 <!--</div>-->
 
 <div class="container" style="padding-top: 66px">
@@ -131,6 +124,12 @@
                     <div class="card-header">
                         <h5 class="card-title">Описание проекта</h5>
                     </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="name_of_project">Проект</label>
+                            </div>
+                            <input type="text" class="form-control" id="name_of_project" value="<%=project.name%>" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        </div>
                     <div class="row">
                         <div class="col text-center">
                             <div class="row">
@@ -171,17 +170,23 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Описание</label>
                                         <textarea class="form-control" id="description_for_project" rows="3"><%=project.description%></textarea>
-                                        <button class="btn btn-primary" onclick="changeDescription()" type="button">Редактировать</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <input class="form-control-file" id="upLoadImages" type="file" multiple name="file" />
-
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" <%if(project.payment){%>checked<%}%>> Оплачиваемая стажировка
+                        </label>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                <button class="btn btn-primary float-right" onclick="changeDescription()" type="button">Сохранить изменения</button>
+            </div>  </div>
             <div class="row">
                 <div class="card-body">
                     <div class="card-header">
@@ -281,13 +286,6 @@
                                         </table>
                                     </div>
                                 </li>
-                                <li>
-                                    <input type="radio" name="tabs-0" id="tabs-0-3" disabled="disabled" />
-                                    <label for="tabs-0-3">Вкладка 4</label>
-                                    <div>
-
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -329,7 +327,7 @@
 <script>
 
     function changeDescription(){//сохраняет всю сущность
-
+console.log('<%=project._id%>')
             var data = new FormData();
             var massFiles1 = document.getElementById('upLoadImages').files;
 
@@ -339,14 +337,37 @@
 
             data.append('name', document.getElementById('name_of_project').value);
             data.append('description', document.getElementById('description_for_project').value);
-            data.append('projectId', '<%=project._id.toString()%>');
+            data.append('projectId', '<%=project._id%>');
            // data.append('phoneNumber', document.getElementById('phoneNumberOrganizzation').value);
 
 
-        goAjaxRequest({type:'POST',data:data,url:'/change-project',funcComplete:function(){
-                location.reload(true);
 
-            }},true);
+        let data_={
+            name: document.getElementById('name_of_project').value,
+            description:document.getElementById('description_for_project').value,
+            projectId:'<%= project._id %>'
+
+
+        };
+
+        // goAjaxRequest({type:'POST',data:data_,url:'/change-project',funcComplete:function(){
+        //         location.reload(true);
+        //
+        //     }},true);
+
+            $.ajax({
+                type: 'POST',
+                url: '/change-project',
+                //dataType: 'json',
+                data: data_,
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    location.reload();
+                }
+            });
+
     }
 
     function acceptStudent(studentid){
@@ -386,7 +407,7 @@
         data.name=document.getElementById('add_technique').value;
         data.projectId='<%=project._id.toString()%>';
 
-        goAjaxRequest({type:'POST',data:data,url:'/add-technique',funcComplete:function(){
+        goAjaxRequest({type:'POST',data:data,url:'/add-technology',funcComplete:function(){
                 location.reload(true)
 
             }});

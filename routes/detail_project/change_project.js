@@ -2,7 +2,9 @@ const Project = require('../../models/project');
 
 exports.post = async function (req, res) {
     try {
-        let proj=await Project.findById(req.body.projectId);
+        let proj=await Project.findOne({_id: req.body.projectId});
+        console.log(proj);
+        console.log(req.body);
         proj.name=req.body.name;
         proj.description=req.body.description;
         //
@@ -10,6 +12,8 @@ exports.post = async function (req, res) {
         //     description:req.body.description,
         //     name:req.body.name
         // };
+
+
 
         if(req.files){
             for(let i=0;i<req.files.length;++i){
