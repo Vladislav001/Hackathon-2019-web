@@ -39,7 +39,7 @@ exports.post = async function (req, res) {
                 let oneProject = {};
                 let images = [];
                 for (let i = 0; i < projects[project].images.length; i++) {
-                    images.push(`${constants.PROTOCOL}${req.headers['host']}${projects[project].images[i]}`);
+                    images.push(`${constants.PROTOCOL}${req.headers['host']}/${projects[project].images[i]}`);
                 }
 
                 oneProject.id = projects[project]._id;
