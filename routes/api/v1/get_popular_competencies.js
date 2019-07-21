@@ -10,7 +10,7 @@ exports.post = async function (req, res) {
         cleanCompetencies.push(competencies[i].name);
     }
 
-    //console.log(competencies);
+    console.log(competencies);
 
     let countCompetencies = cleanCompetencies.reduce(function (acc, curr) {
         if (typeof acc[curr] == 'undefined') {
@@ -22,19 +22,19 @@ exports.post = async function (req, res) {
         return acc;
     }, {});
 
-    //console.log(countCompetencies);
+    console.log(countCompetencies);
 
-    let sortable = [];
-    for (let vehicle in countCompetencies) {
-       sortable.push([vehicle, countCompetencies[vehicle]]);
+    let mass=[];
+    for (key in countCompetencies) {
+        mass.push({name:key,count:countCompetencies[key]});
+
     }
 
-    sortable.sort(function(a, b) {
-        return a[1] - b[1];
+    mass.sort(function(aObj,bObj){
+        return bObj.count - aObj.count;
     });
 
-    console.log(sortable);
 
 
-    res.status(200).send(sortable);
+    res.status(200).send(mass);
 };
