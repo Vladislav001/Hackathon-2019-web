@@ -267,13 +267,19 @@ module.exports = function (passport) {
      *     description: ""
      *     produces:
      *       - application/json
+     *     parameters:
+     *     - name: "x-access-token"
+     *       in: "header"
+     *       description: "Токен"
+     *       required: false
+     *       type: "string"
      *     responses:
      *       200:
      *        description: Проекты успешно получены
      *        examples:
      *           application/json: { id:13dad, company: Название компании, company_avatar: Ссылка на аватарку компании,
      *            project_name: Название проекта, project_description: Описание проекта, project_foto: Ссылка на фото проекта,
-     *            list_competitions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"]}
+     *            list_competitions: ["CSS", "HTML"], count_orders: 12, approved_by_university: ["САПР", "ЭВМ"], isOrdered: 0}
      *
      */
     router.post('/api/v1/get-projects', require('./api/v1/get_projects').post);
@@ -339,6 +345,24 @@ module.exports = function (passport) {
      */
     router.post('/api/v1/student/membership-request', verifyToken, require('./api/v1/student/membership_request').post);
 
+
+    /**
+     * @swagger
+     * /api/v1/get-popular-competencies:
+     *   post:
+     *     tags:
+     *       - ""
+     *     summary: "Получить навыки по популярности"
+     *     description: ""
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *        description: Example data
+     *        examples:
+     *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
+     */
+    router.post('/api/v1/get-popular-competencies', require('./api/v1/get_popular_competencies').post);
 
     return router;
 };
