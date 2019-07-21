@@ -46,6 +46,7 @@ exports.post = async function (req, res) {
                 oneProject.project_name = projects[project].name;
                 oneProject.project_description = projects[project].description;
                 oneProject.project_foto = images[0];
+                oneProject.payment = projects[project].payment;
 
                 let employer = await Employer.findOne({_id:  projects[project].employerId});
                 oneProject.company = employer.company;
