@@ -176,6 +176,11 @@
                         </div>
                     </div>
                     <input class="form-control-file" id="upLoadImages" type="file" multiple name="file" />
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" <%if(project.payment){%>checked<%}%>> Оплачиваемая стажировка
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -279,13 +284,6 @@
                                             <% } %>
                                             <% } %>
                                         </table>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="radio" name="tabs-0" id="tabs-0-3" disabled="disabled" />
-                                    <label for="tabs-0-3">Вкладка 4</label>
-                                    <div>
-
                                     </div>
                                 </li>
                             </ul>
