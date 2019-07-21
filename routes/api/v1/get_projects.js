@@ -11,7 +11,7 @@ exports.post = async function (req, res) {
         let token = req.headers['x-access-token'];
         let projectsIDOfStudent = [];
         let data = [];
-        let projects = await Project.find({});
+        let projects = await Project.find({complited: false, closed:false});
 
         if (token) {
             let errors = [];

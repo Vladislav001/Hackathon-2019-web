@@ -386,7 +386,7 @@
         data.name=document.getElementById('add_technique').value;
         data.projectId='<%=project._id.toString()%>';
 
-        goAjaxRequest({type:'POST',data:data,url:'/add-technique',funcComplete:function(){
+        goAjaxRequest({type:'POST',data:data,url:'/add-technology',funcComplete:function(){
                 location.reload(true)
 
             }});
