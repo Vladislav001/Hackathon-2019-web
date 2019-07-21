@@ -16,7 +16,7 @@ exports.post = async function (req, res) {
         if (token) {
             let errors = [];
             try {
-                let tokenExistAndRight = jwt.verify(token, constants.SECRET_STRING);
+                var tokenExistAndRight = jwt.verify(token, constants.SECRET_STRING);
                 let projectsOrdered = await projStudentSchema.find({studentId: tokenExistAndRight.id});
 
                 for (let projectOrdered = 0; projectOrdered < projectsOrdered.length; projectOrdered++)
@@ -66,10 +66,11 @@ exports.post = async function (req, res) {
 
                 if(projectsIDOfStudent.indexOf(String(projects[project]._id)) != -1)
                 {
-                    let record = await projStudentSchema.findOne({projectId: projects[project]._id});
+                    let record = await projStudentSchema.findOne({projectId: projects[project]._id, studentId: tokenExistAndRight.id});
 
                     oneProject.isOrdered = record.status;
                 }
+
                 data.push(oneProject);
             }
 
