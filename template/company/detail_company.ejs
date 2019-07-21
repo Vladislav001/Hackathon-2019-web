@@ -17,7 +17,7 @@
         <img style="height:200px; margin-bottom: 5px" class="rounded float-left" src="<%= Model.user.image_avatar%>" alt="Аватарка компании">
         <% }else{%>
 
-        <img src="/uploads/test_file.jpg" class="rounded float-left"  alt="Image" >
+        <img style="height:200px" src="/uploads/test_file.jpg" class="rounded float-left"  alt="Image" >
         <% }%>
 
     </div>
@@ -95,7 +95,10 @@
                     <div class="card" style="width: 18rem;">
                         <% if(Model.projects[i].images&&Model.projects[i].images.length>0) {%>
                         <img class="card-img-top" src="<%=Model.projects[i].images[0]%>" alt="image">
-                        <% } %>
+                        <% }else{%>
+
+                            <img style="height:200px" src="/uploads/test_file.jpg" class="rounded float-left"  alt="Image" >
+                        <% }%>
 
                         <div class="card-body">
                             <h5 class="card-title"><%=Model.projects[i].name%></h5>
