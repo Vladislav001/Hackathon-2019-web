@@ -313,7 +313,7 @@ module.exports = function (passport) {
 
     /**
      * @swagger
-     * /api/v1/membership-request:
+     * /api/v1/student/membership-request:
      *   post:
      *     tags:
      *       - ""
