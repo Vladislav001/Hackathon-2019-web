@@ -171,8 +171,7 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Описание</label>
                                         <textarea class="form-control" id="description_for_project" rows="3"><%=project.description%></textarea>
-                                        <a href="#" class="btn btn-primary">Редактировать</a>
-
+                                        <button class="btn btn-primary" onclick="changeDescription()" type="button">Редактировать</button>
                                     </div>
                                 </div>
                             </div>
@@ -321,15 +320,27 @@
 </div>
 
 <script>
+   console.log('fafafafafa');
 
-    function onClickfg(){
-        goAjaxRequest({type:'GET',data:{name:'nm1'},url:'/add-example',funcSuccess:function(xhr, status, jqXHR){
+    function changeDescription(){
 
-            }
+        var data = {};
+        data.description=document.getElementById('description_for_project').value;
+        data.project_id='<%=project._id.toString()%>';
 
+        goAjaxRequest({type:'POST',data:data,url:'/change-project',funcComplete:function(){
+                location.reload(true)
 
-        });
+            }});
     }
 
-</script>
+    // function onClickfg(){
+    //     goAjaxRequest({type:'GET',data:{name:'nm1'},url:'/add-example',funcSuccess:function(xhr, status, jqXHR){
+    //
+    //         }
+    //
+    //
+    //     });
+    // }
 
+</script>

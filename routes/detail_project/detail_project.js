@@ -18,12 +18,6 @@ exports.get = async function (req, res) {
             students.push(await Students.findOne({_id:project_student[i].studentId}));
         }
 
-        // console.log(students[0][0].first_name);
-        // projects.forEach(example => {
-        //     example.file = `${req.headers['host']}/${example.file}`;
-        //     data.push(example);
-        // });
-
         res.render('detail_project/detail_project', {
             project_student:project_student,
             students:students,
