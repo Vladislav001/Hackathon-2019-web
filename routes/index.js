@@ -369,7 +369,7 @@ module.exports = function (passport) {
      *       200:
      *        description: Example data
      *        examples:
-     *           application/json: [{ id: 1, name: "ВолгГТУ"}, { id: 2, name: "ВолгГМУ"}]
+     *           application/json: [{ name: ml, count: 2}, { name: php, count: 1}]
      */
     router.post('/api/v1/get-popular-competencies', require('./api/v1/get_popular_competencies').post);
 
