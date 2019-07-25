@@ -3,5 +3,5 @@ exports.get = function (req, res) {
         res.redirect('/detail-company');
     }
 
-    res.render('auth/login');
+    res.render('auth/login', { expressFlash: req.flash('message')} );
 };
