@@ -1,6 +1,4 @@
 /node_modules/*
 *.xml
 .idea
-app.js 
-routes/index.js
-
+.env
