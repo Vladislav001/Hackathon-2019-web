@@ -27,8 +27,10 @@
                 <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                 <h6 class="text-right"><a href="/">Вход</a></h6>
             </form>
+            <% if ( expressFlash.length > 0 ) { %>
+                <p style="color: red"><%= expressFlash %> </p>
+            <% } %>
         </div>
-
     </div>
 </div>
 </div>

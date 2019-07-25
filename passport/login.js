@@ -12,7 +12,9 @@ module.exports = function (passport) {
         function (err, user) {
           if (err)
             return done(err);
-
+            let data = {};
+            data.message = 'adda';
+            data.data = req.body;
           if (!user) {
             console.log('User Not Found with email ' + email);
             return done(null, false, req.flash('message', 'Введен неверный email или пароль'));
