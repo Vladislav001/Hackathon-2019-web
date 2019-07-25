@@ -8,11 +8,14 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+require('dotenv').config();
 
 const app = express();
 
 // connect to DB
-mongoose.connect('mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant', {useNewUrlParser: true});
+mongoose.connect(`mongodb://${process.env.LOGIN_DATABASE}:${process.env.PASSWORD_DATABASE}@${process.env.DATABASE}`, {useNewUrlParser: true});
+
+//mongoose.connect(`mongodb://admin:123456v@ds155606.mlab.com:55606/repair-assistant`, {useNewUrlParser: true});
 //mongoose.connect('mongodb+srv://admin:123456v@cluster0-qjjoz.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}); // guriev
 //mongoose.connect('mongodb+srv://hackathon_2019:hackathon123456@cluster0-pkmka.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});  // avdosev
 mongoose.set('useFindAndModify', false);
